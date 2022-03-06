@@ -1,0 +1,41 @@
+#N canvas 868 462 572 450 12;
+#X obj 100 0 inlet;
+#X obj 100 50 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 100 270 tgl 19 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 100 320 *~;
+#X floatatom 300 120 8 0 0 0 - - -, f 8;
+#X floatatom 200 120 9 0 0 0 - - -, f 9;
+#X obj 200 0 inlet;
+#X obj 300 0 inlet;
+#X obj 400 0 loadbang;
+#X obj 260 230 delay;
+#X obj 170 280 osc~;
+#X obj 210 90 default 1000;
+#X obj 310 90 default 100;
+#X obj 210 60 \$1;
+#X obj 310 60 \$2;
+#X obj 400 30 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 100 400 outlet~;
+#X obj 100 370 monitor~;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 9 0;
+#X connect 2 0 3 0;
+#X connect 3 0 17 0;
+#X connect 4 0 9 1;
+#X connect 5 0 10 0;
+#X connect 6 0 5 0;
+#X connect 7 0 4 0;
+#X connect 8 0 15 0;
+#X connect 9 0 2 0;
+#X connect 10 0 3 1;
+#X connect 11 0 5 0;
+#X connect 12 0 4 0;
+#X connect 13 0 11 0;
+#X connect 14 0 12 0;
+#X connect 15 0 14 0;
+#X connect 15 0 13 0;
+#X connect 17 0 16 0;
