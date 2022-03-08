@@ -11,17 +11,15 @@ function patch:initialize(sel, atoms)
    self.alteration = 0
    self.octave = 4
 
-   self["in_1_pitch-class"] = self.in_1_pitch_class
-   self["in_2_pitch-class"] = self.in_2_pitch_class
-
+   self["in_n_pitch-class"] = self.in_n_pitch_class
    return true
 end
 
 function patch:in_1_bang()
    -- Normalize values
    self.step = self.step % 7
-   self.octave = math.min(math.max(self.octave, 0), 10)
    self.alteration = math.min(math.max(self.alteration, -2), 2)
+   self.octave = math.min(math.max(self.octave, 0), 10)
 
    result = string.format("%s%s", self.english_names[self.step + 1], self.alteration_names[self.alteration + 2 + 1])
    self:outlet(1, "symbol", {result})

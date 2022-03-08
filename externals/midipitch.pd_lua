@@ -1,14 +1,8 @@
-local patch = pd.Class:new():register("pitch")
+local patch = pd.Class:new():register("midipitch")
 
 function patch:initialize(sel, atoms)
    self.outlets = 1
-   if type(atoms[1]) == "string" and atoms[1] == "class" then
-      self.mode = "class"
-      self.inlets = 2
-   else
-      self.mode = "full"
-      self.inlets = 3
-   end
+   self.inlets = 3
 
    self.step = 0
    self.alteration = 0
@@ -24,11 +18,11 @@ function patch:in_1_bang()
    self.alteration = math.min(math.max(self.alteration, -2), 2)
    self.octave = math.min(math.max(self.octave, 0), 10)
 
-   if self.mode == "class" then
-      self:outlet(1, "pitch-class", {self.step, self.alteration})
-   else
-      self:outlet(1, "pitch", {self.step, self.alteration, self.octave})
+   result = self.step * 2 + self.alteration + self.octave * 12
+   if self.step >= 3 then
+      result = result - 1
    end
+   self:outlet(1, "float", {result})
 end
 
 function patch:in_1_float(step)
