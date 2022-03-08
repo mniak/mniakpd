@@ -1,9 +1,9 @@
-local patch = pd.Class:new():register("pitch")
+local patch = pd.Class:new():register("pitch-class")
 
 function patch:initialize(sel, atoms)
-   self.inlets = 3
+   self.inlets = 2
    self.outlets = 1
-   
+
    self.step = 0
    self.alteration = 0
    self.octave = 4
