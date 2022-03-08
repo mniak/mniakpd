@@ -12,7 +12,7 @@ end
 
 function patch:in_1_bang()
    -- Normalize values
-   self.steps = (self.steps -1) % 7 + 1
+   self.steps = math.min(math.max(self.alteration, -15), 15)
    self.alteration = math.min(math.max(self.alteration, -2), 1)
 
    self:outlet(1, "interval", {self.steps, self.alteration})
