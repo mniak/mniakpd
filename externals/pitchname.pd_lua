@@ -1,20 +1,19 @@
-local patch = pd.Class:new():register("pitch")
+local patch = pd.Class:new():register("pitchname")
+
+patch.english_names = {"C", "D", "E", "F", "G", "A", "B"}
+patch.alteration_names = {"bb", "b", "", "#", "##"}
 
 function patch:initialize(sel, atoms)
+   self.inlets = 2
    self.outlets = 1
-   if type(atoms[1]) == "string" and atoms[1] == "class" then
-      self.mode = "class"
-      self.inlets = 2
-   else
-      self.mode = "full"
-      self.inlets = 3
-   end
 
    self.step = 0
    self.alteration = 0
    self.octave = 4
 
-   self["in_n_pitch-class"] = self.in_n_pitch_class
+   self["in_1_pitch-class"] = self.in_1_pitch_class
+   self["in_2_pitch-class"] = self.in_2_pitch_class
+
    return true
 end
 
@@ -24,11 +23,8 @@ function patch:in_1_bang()
    self.octave = math.min(math.max(self.octave, 0), 10)
    self.alteration = math.min(math.max(self.alteration, -2), 2)
 
-   if self.mode == "class" then
-      self:outlet(1, "pitch-class", {self.step, self.alteration})
-   else
-      self:outlet(1, "pitch", {self.step, self.alteration, self.octave})
-   end
+   result = string.format("%s%s", self.english_names[self.step + 1], self.alteration_names[self.alteration + 2 + 1])
+   self:outlet(1, "symbol", {result})
 end
 
 function patch:in_1_float(step)
