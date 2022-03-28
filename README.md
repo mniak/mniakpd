@@ -27,6 +27,10 @@ There are many text books out there, like the famous Bona, Pozzoli and so on.
 - Play two notes and ask for the interval
   - Option to check the answer choosing from a series of buttons
 
+- Play a root, then many notes and ask for the names.
+  - Option to check the answer choosing from a series of buttons
+  - 
+
 
 ### Generation 
 #### Pitches
@@ -57,10 +61,10 @@ There are many text books out there, like the famous Bona, Pozzoli and so on.
   - [ ] With tempo and duration in beats
 
 #### MIDI output
-- [ ] Play pitch
+- [ ] Play pitch `[make-sine]`, `[pitch-class C#(`, `[set octave 4(`
   - [ ] With duration in seconds
   - [ ] With tempo and duration in beats
-- [ ] Play chord
+- [ ] Play chord `[make-sine]`, `[chord C#(`, `[set octave 4(`
   - [ ] With duration in seconds
   - [ ] With tempo and duration in beats
 
@@ -85,3 +89,11 @@ There are many text books out there, like the famous Bona, Pozzoli and so on.
 - [ ] Sheet music: series of "Lines", each one composed of Chords/Rests with pitch
   - [ ] Clef
   - [ ] Key signature
+
+### Exercise tools
+- [ ] Note name checker
+  - [ ] English name
+  - [ ] Italian name
+    - [ ] Fixed Do
+    - [ ] Movable Do
+- [ ] Interval checker
