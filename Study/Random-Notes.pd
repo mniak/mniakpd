@@ -1,4 +1,4 @@
-#N canvas 814 81 988 876 12;
+#N canvas 576 117 988 876 12;
 #X obj 250 279 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
 #X obj 320 280 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
@@ -21,19 +21,22 @@
 #X obj 250 250 select 2;
 #X obj 770 270 loadbang;
 #X msg 770 300 50;
-#X msg 810 300 800;
 #X obj 240 400 pitch class;
 #X obj 240 429 pitchname;
 #X msg 400 350 0;
 #X obj 510 610 print;
 #X obj 190 130 metronome~ 80;
+#X obj 190 90 hsl 330 26 50 400 0 0 empty empty empty -2 -8 0 10 #fcfcfc
+#000000 #000000 32900 1;
+#X floatatom 370 130 5 0 0 0 - - -, f 5;
+#X msg 810 300 200;
 #X connect 0 0 5 0;
 #X connect 1 0 8 0;
 #X connect 3 0 2 0;
-#X connect 3 0 24 0;
+#X connect 3 0 23 0;
 #X connect 3 1 2 1;
 #X connect 5 0 15 0;
-#X connect 5 0 21 0;
+#X connect 5 0 20 0;
 #X connect 5 0 7 0;
 #X connect 7 0 8 1;
 #X connect 7 0 13 0;
@@ -46,12 +49,14 @@
 #X connect 16 0 1 0;
 #X connect 17 0 0 0;
 #X connect 18 0 19 0;
-#X connect 18 0 20 0;
+#X connect 18 0 27 0;
 #X connect 19 0 12 0;
-#X connect 20 0 3 2;
-#X connect 21 0 22 0;
-#X connect 22 0 6 0;
-#X connect 23 0 7 0;
-#X connect 25 0 4 0;
-#X connect 25 1 16 0;
-#X connect 25 1 17 0;
+#X connect 20 0 21 0;
+#X connect 21 0 6 0;
+#X connect 22 0 7 0;
+#X connect 24 0 4 0;
+#X connect 24 1 16 0;
+#X connect 24 1 17 0;
+#X connect 25 0 26 0;
+#X connect 26 0 24 1;
+#X connect 27 0 3 2;

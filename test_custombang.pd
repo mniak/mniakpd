@@ -1,0 +1,6 @@
+#N struct 1005-ds-bng float button float bg;
+#N canvas 915 406 450 300 12;
+#X obj 130 110 custombang;
+#X obj 120 50 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X connect 1 0 0 0;

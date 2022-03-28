@@ -10,9 +10,17 @@ function patch:initialize(sel, atoms)
    return true
 end
 
+function patch:contains(list, x)
+	for _, v in pairs(list) do
+		if v == x then return true end
+	end
+	return false
+end
+
 function patch:in_1_bang()
    -- Normalize values
-   self.steps = math.min(math.max(self.alteration, -15), 15)
+   self.steps = math.min(math.max(self.steps, -15), 15)
+   if self.steps % 7 in 
    self.alteration = math.min(math.max(self.alteration, -2), 1)
 
    self:outlet(1, "interval", {self.steps, self.alteration})

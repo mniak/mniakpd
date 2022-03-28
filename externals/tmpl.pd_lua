@@ -10,10 +10,13 @@ function patch:initialize(sel, atoms)
 end
 
 function patch:in_1_bang()
+   -- pd.post("in_1_bang")
    self:outlet(1, self.head, self.tail)
+   -- pd.post("-------------------------------")
 end
 
 function patch:in_n(n, sel, atoms)
+   -- pd.post(string.format("in_n, n=%d, sel=%s", n, s))
    result = {}
    for _, value in pairs(self.template) do
       if value == "$" then
@@ -27,5 +30,7 @@ function patch:in_n(n, sel, atoms)
    end
    self.head = table.remove(result, 1)
    self.tail = result
-   self:in_1_bang()
+   if n == 1 then 
+      self:in_1_bang()
+   end
 end

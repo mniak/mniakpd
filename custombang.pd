@@ -1,11 +1,15 @@
 #N struct 1003-ds-bng float button float bg;
 #N canvas 13 177 967 416 12;
-#N canvas 0 85 1004 682 \$0-ds-bng 1;
+#N canvas 1556 230 1004 682 \$0-ds-bng 1;
 #X obj 107 64 outlet;
-#X obj 169 106 filledpolygon bg bg 1 0 0 13 0 13 13 0 13;
 #X obj 107 39 struct \$0-ds-bng float button float bg;
-#X obj 169 136 filledcurve button 0 1 0 0 13 0 13 13 0 13;
-#X connect 2 0 0 0;
+#X obj 110 120 draw path M 216 675 c 93 0 206 52 206 123 c 0 70 -52
+127 -216 127 c -149 0 -206 -60 -206 -127 c 0 -68 83 -123 216 -123 z
+M 111 737 c -2 8 -3 16 -3 24 c 0 32 15 66 35 89 c 21 28 58 52 94 52
+c 10 0 21 -1 31 -4 c 33 -8 46 -36 46 -67 c 0 -60 -55 -134 -124 -134
+c -31 0 -68 5 -79 40 z;
+#X obj 150 270 draw rect 40 40;
+#X connect 1 0 0 0;
 #X restore 296 97 pd \$0-ds-bng;
 #X obj 609 273 pointer;
 #X obj 296 122 route click;
@@ -44,7 +48,7 @@
 #X obj 188 326 set \$0-ds-bng button;
 #N canvas 0 86 1004 682 \$0-gop 0;
 #X scalar 1003-ds-bng 999 999 \;;
-#X coords 0 0 13 13 13 13 2 0 0;
+#X coords 0 0 13 13 73 189 2 0 0;
 #X restore 1 1 pd \$0-gop;
 #N canvas 0 0 1004 682 gop-init 0;
 #X obj 60 546 list prepend pd- \$0 -gop;
