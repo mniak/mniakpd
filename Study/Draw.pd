@@ -1,5 +1,0 @@
-#N struct my-drawing float x float y;
-#N canvas 173 65 574 317 12;
-#X scalar my-drawing 40 50 \;;
-#X obj 40 20 graph-staff my-drawing;
-#X coords 0 0 1 1 85 60 0;

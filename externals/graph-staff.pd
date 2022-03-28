@@ -1,6 +1,0 @@
-#N struct my-drawing float x float y;
-#N canvas 1074 124 988 876 12;
-#X obj 191 132 draw rect 40 100 0 0;
-#X obj 191 102 struct \$1 float x float y;
-#X obj 10 10 inlet;
-#X coords 0 0 1 1 467 404 0;
