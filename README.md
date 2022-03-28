@@ -1,5 +1,5 @@
-Dynamic Music Practice Textbook Framweork for Purr-Data
-=======================================================
+Dynamic Music Practice Textbook Framework
+==========================================
 
 ## Objectives
 
