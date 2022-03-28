@@ -1,13 +1,11 @@
-## References
-
-- [Atonal Glossary](http://elliotthauser.com/openmusictheory/atonalGlossary.html#:~:text=interval%20class%20%E2%80%93%20The%20number%20of,concerned%20only%20with%20pitch%20classes.)
-- [Music Theory for the 21st-Century Classroom](https://musictheory.pugetsound.edu/mt21c/MusicTheory.html)
+Dynamic Music Practice Textbook Framweork for Purr-Data
+=======================================================
 
 ## Objectives
 
 Create a framework of subpatches that would allow building many exercises for self-service study.
 
-The idea is to allow the creationg of "Dynamic Music Practice Text Books".
+The idea is to allow the creationg of "Dynamic Music Practice Textbook".
 There are many text books out there, like the famous Bona, Pozzoli and so on.
 
 ### Sample exercises
@@ -97,3 +95,11 @@ There are many text books out there, like the famous Bona, Pozzoli and so on.
     - [ ] Fixed Do
     - [ ] Movable Do
 - [ ] Interval checker
+
+
+## Links
+
+- [Pure Data](https://puredata.info/)
+- [Purr Data](https://agraef.github.io/purr-data/)
+- [Atonal Glossary](http://elliotthauser.com/openmusictheory/atonalGlossary.html#:~:text=interval%20class%20%E2%80%93%20The%20number%20of,concerned%20only%20with%20pitch%20classes.)
+- [Music Theory for the 21st-Century Classroom](https://musictheory.pugetsound.edu/mt21c/MusicTheory.html)
