@@ -1,5 +1,6 @@
+require "libs"
+
 local patch = pd.Class:new():register("pitch")
-local rand = require "openssl.rand"
 
 local MIN_OCTAVE <const> = 0
 local MAX_OCTAVE <const> = 10
@@ -15,19 +16,6 @@ local CHOICES = {
    {5, -1}, {5, 0}, {5, 1},
    {6, -1}, {6, 0},
 }
-
-function random_range(min, max) 
-   return rand.uniform(max-min) + min
-end
-
-function random_choice(items) 
-   index0 = rand.uniform(#items - 1)
-   return items[index0 + 1]
-end
-
-function truncate_range(value, min, max)
-   return math.floor(math.min(math.max(value, min), max))
-end
 
 function patch:initialize(sel, atoms)
    if #atoms > 0 and atoms[1] == "class" then
