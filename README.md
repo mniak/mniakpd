@@ -8,7 +8,11 @@ Create a framework of subpatches that would allow building many exercises for se
 The idea is to allow the creationg of "Dynamic Music Practice Textbook".
 There are many text books out there, like the famous Bona, Pozzoli and so on.
 
-### Sample exercises
+## Requirements
+- [Purr Data](https://agraef.github.io/purr-data/)
+- Library [luaossl](https://github.com/wahern/luaossl)
+
+## Sample exercises
 - Generate random single-voice measures and display on the screen. The student should try to play it.
   - Option to choose scale
   - Option to play the notes as midi
@@ -27,30 +31,29 @@ There are many text books out there, like the famous Bona, Pozzoli and so on.
 
 - Play a root, then many notes and ask for the names.
   - Option to check the answer choosing from a series of buttons
-  - 
 
 
-### Generation 
-#### Pitches
+## Generation 
+### Pitches
 - [ ] Random Pitch generator
   - [ ] With constraints (Octave range, scales, diatonic, chromatic)
 
-#### Intervals
+### Intervals
 - [ ] Random Interval generator
   - [ ] With constraints (3rds, 5ths, Major, Minor)
 - [ ] Interval from two Pitches
 
 
-#### Chords
+### Chords
 - [ ] Chord builder (Root Pitch + Intervals)
 
 
-#### Rythm
+### Rythm
 - [ ] "Duration"
 
-### Outputs
+## Outputs
 
-#### Sine output
+### Sine output
 - [ ] Play pitch
   - [ ] With duration in seconds
   - [ ] With tempo and duration in beats
@@ -58,7 +61,7 @@ There are many text books out there, like the famous Bona, Pozzoli and so on.
   - [ ] With duration in seconds
   - [ ] With tempo and duration in beats
 
-#### MIDI output
+### MIDI output
 - [ ] Play pitch `[make-sine]`, `[pitch-class C#(`, `[set octave 4(`
   - [ ] With duration in seconds
   - [ ] With tempo and duration in beats
@@ -66,17 +69,17 @@ There are many text books out there, like the famous Bona, Pozzoli and so on.
   - [ ] With duration in seconds
   - [ ] With tempo and duration in beats
 
-#### Text output
+### Text output
 - [ ] Pitch name
 - [ ] Chord name
 - [ ] Big text box
 
-#### Simple displays
+### Simple displays
 - [ ] Single Pitch display
 - [ ] Single Chord display
 - [ ] Single Note Duration/Rest display
 
-#### Measure displays
+### Measure displays
 - [ ] Rhythm: series of Note/Rests without pitch
   - [ ] Clef
   - [ ] Key signature
@@ -99,7 +102,5 @@ There are many text books out there, like the famous Bona, Pozzoli and so on.
 
 ## Links
 
-- [Pure Data](https://puredata.info/)
-- [Purr Data](https://agraef.github.io/purr-data/)
 - [Atonal Glossary](http://elliotthauser.com/openmusictheory/atonalGlossary.html#:~:text=interval%20class%20%E2%80%93%20The%20number%20of,concerned%20only%20with%20pitch%20classes.)
 - [Music Theory for the 21st-Century Classroom](https://musictheory.pugetsound.edu/mt21c/MusicTheory.html)
