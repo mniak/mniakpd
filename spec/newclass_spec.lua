@@ -20,7 +20,7 @@ describe("Try to create new class", function()
    assert.are.equal('C', sut.c);
    assert.are.equal('D', sut.d);
    assert.are.equal(nil, sut.z);
-end);
+end)
 
 describe("Dont mix data from two classes", function()
    MyClass1 = require "newclass"(function(self)
@@ -43,7 +43,7 @@ describe("Dont mix data from two classes", function()
    assert.are.equal('D1', m1.v);
    assert.are.equal('V2', m2.v);
    assert.are.equal('V3', m3.v);
-end);
+end)
 
 describe("Dont mix data from two instances", function()
    MyClass = require "newclass"(function(self)
@@ -59,4 +59,4 @@ describe("Dont mix data from two instances", function()
    assert.are.equal('D0', m1.v);
    assert.are.equal('V2', m2.v);
    assert.are.equal('V3', m3.v);
-end);
+end)
