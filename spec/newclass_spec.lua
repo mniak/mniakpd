@@ -1,21 +1,24 @@
 require "busted.runner"()
 
 describe("Try to create new class", function()
-   MyClass = require "newclass"()
-   function MyClass:get_a()
-      return 'A'
+   MyClass = require "newclass"({
+      a = 'A',
+   })
+   function MyClass:get_b()
+      return 'B'
    end
-   function MyClass:set_b(value) 
-      self.b = value
+   function MyClass:set_c(value) 
+      self.c = value
    end
 
    sut = MyClass:new()
-   sut.b = 'B'
    sut.c = 'C'
+   sut.d = 'D'
 
    assert.are.equal('A', sut.a);
    assert.are.equal('B', sut.b);
    assert.are.equal('C', sut.c);
+   assert.are.equal('D', sut.d);
    assert.are.equal(nil, sut.z);
 end);
 

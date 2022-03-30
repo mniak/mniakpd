@@ -1,8 +1,8 @@
-return function()
+return function(defaults)
    class = {}
-   function class:new(o)
-      local o = o or {}
-      local meta = {}
+   function class:new()
+      local o = {}
+      local meta = defaults or {}
 
       function meta:__index(index)
          local getfunc = class["get_" .. index]
