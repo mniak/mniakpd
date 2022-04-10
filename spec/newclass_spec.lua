@@ -70,6 +70,30 @@ describe("Test getters and setters", function()
       assert.are.equal('new value of E', sut._e)
    end)
 
+   describe("With constructor and getter and setter using underlying field", function()
+      MyClass = newclass(function(self)
+         self._f = "initial value of F"
+      end)
+      function MyClass:get_f()
+         return self._f
+      end
+      function MyClass:set_f(value)
+         self._f = value
+      end
+    
+      sut = MyClass:new()
+      assert.are.equal('initial value of F', sut.f)
+      assert.are.equal('initial value of F', sut._f)
+
+      assert.are.equal(nil, sut.f)
+      assert.are.equal(nil, sut._f)
+
+      sut.f = 'new value of F'
+      assert.are.equal('new value of F', sut.f)
+      assert.are.equal('new value of F', sut._f)
+   end)
+
+
 end)
 
 describe("Dont mix data from two classes", function()
