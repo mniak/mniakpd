@@ -1,35 +1,67 @@
 require "busted.runner"()
 
-describe("Try to create new class", function()
-   MyClass = require "newclass"(function(self)
-      self.a = 'A'
+local newclass = require "newclass"
+
+describe("Test getters and setters", function()
+
+   describe("Simple scenario", function()
+      MyClass = newclass()
+
+      sut = MyClass:new()
+      assert.are.equal(nil, sut.a)
+
+      sut.a = 'value A'
+      assert.are.equal('value A', sut.a)
    end)
-   function MyClass:get_b()
-      return 'B'
-   end
-   function MyClass:set_c(value)
-      self.c = value
-   end
 
-   sut = MyClass:new()
-   sut.c = 'C'
-   sut.d = 'D'
+   describe("With constructor", function()
+      MyClass = newclass(function(self)
+         self.b = 'initial value of B'
+      end)
 
-   assert.are.equal('A', sut.a);
-   assert.are.equal('B', sut.b);
-   assert.are.equal('C', sut.c);
-   assert.are.equal('D', sut.d);
-   assert.are.equal(nil, sut.z);
+      sut = MyClass:new()
+      assert.are.equal('initial value of B', sut.b);
+
+      sut.b = 'new value of B'
+      assert.are.equal('new value of B', sut.b)
+   end)
+
+   describe("With explicit getter returning static value", function()
+      MyClass = newclass()
+      function MyClass:get_c(value)
+         return 'C: fixed value'
+      end
+
+      sut = MyClass:new()
+      assert.are.equal('C: fixed value', sut.c)
+
+      sut.c = 'attempt to set value of C'
+      assert.are.equal('C: fixed value', sut.c)
+   end)
+
+   describe("With explicit setter setting inner value", function()
+      MyClass = newclass()
+      function MyClass:set_d(value)
+         self._d = value
+      end
+
+      sut = MyClass:new()
+      assert.are.equal(nil, sut._d)
+
+      sut.d = 'new value of D'
+      assert.are.equal('new value of D', sut.d)
+   end)
+
 end)
 
 describe("Dont mix data from two classes", function()
-   MyClass1 = require "newclass"(function(self)
+   MyClass1 = newclass(function(self)
       self.v = 'D1'
    end)
-   MyClass2 = require "newclass"(function(self)
+   MyClass2 = newclass(function(self)
       self.v = 'D2'
    end)
-   MyClass3 = require "newclass"(function(self)
+   MyClass3 = newclass(function(self)
       self.v = 'D3'
    end)
 
@@ -46,7 +78,7 @@ describe("Dont mix data from two classes", function()
 end)
 
 describe("Dont mix data from two instances", function()
-   MyClass = require "newclass"(function(self)
+   MyClass = newclass(function(self)
       self.v = 'D0'
    end)
    m1 = MyClass:new()
