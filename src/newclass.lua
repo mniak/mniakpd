@@ -20,6 +20,7 @@ return function(ctor)
          local setfunc = class["set_" .. index]
          if setfunc ~= nil then
             setfunc(meta, value)
+            return
          end
          meta[index] = value
       end

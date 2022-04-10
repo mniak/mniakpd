@@ -49,7 +49,7 @@ describe("Test getters and setters", function()
       assert.are.equal(nil, sut._d)
 
       sut.d = 'new value of D'
-      assert.are.equal('new value of D', sut.d)
+      assert.are.equal('new value of D', sut._d)
    end)
 
    describe("With explicit getter and setter using underlying field", function()
