@@ -1,0 +1,1 @@
+local patch = pd.Class:new():register("transpose")

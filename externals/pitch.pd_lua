@@ -26,9 +26,10 @@ function patch:initialize(sel, atoms)
    end
    self.outlets = 1
    
-   self.step = 0
-   self.alteration = 0
-   self.octave = 4
+   self.pitch = Pitch:new()
+   -- self.step = 0
+   -- self.alteration = 0
+   -- self.octave = 4
 
    self["in_n_pitch-class"] = self.in_n_pitch_class
    return true
@@ -36,42 +37,43 @@ end
 
 function patch:in_1_bang()
    -- Normalize values
-   self.step = math.floor(self.step % 7)
-   self.alteration = truncate_range(self.alteration, MIN_ALTERATION, MAX_ALTERATION)
-   self.octave = truncate_range(self.octave, MIN_OCTAVE, MAX_OCTAVE)
+   pd.post(string.format(">>> PITCH: %g",  self.pitch.step))
+   -- self.pitch.step = math.floor(self.pitch.step % 7)
+   self.pitch.alteration = truncate_range(self.pitch.alteration, MIN_ALTERATION, MAX_ALTERATION)
+   self.pitch.octave = truncate_range(self.pitch.octave, MIN_OCTAVE, MAX_OCTAVE)
 
    if self.mode == "class" then
-      self:outlet(1, "pitch-class", {self.step, self.alteration})
+      self:outlet(1, "pitch-class", {self.pitch.step, self.pitch.alteration})
    else 
-      self:outlet(1, "pitch", {self.step, self.alteration, self.octave})
+      self:outlet(1, "pitch", {self.pitch.step, self.pitch.alteration, self.pitch.octave})
    end
 end
 
 function patch:in_1_float(step)
-   self.step = step
+   self.pitch.step = step
    self:in_1_bang()
 end
 
 function patch:in_2_float(alteration)
-   self.alteration = alteration
+   self.pitch.alteration = alteration
 end
 
 function patch:in_3_float(octave)
-   self.octave = octave
+   self.pitch.octave = octave
 end
 
 function patch:in_n_pitch(n, pitch)
-   self.step = pitch[1]
-   self.alteration = pitch[2]
-   self.octave = pitch[3]
+   self.pitch.step = pitch[1]
+   self.pitch.alteration = pitch[2]
+   self.pitch.octave = pitch[3]
    if n == 1 then 
       self:in_1_bang()
    end
 end
 
 function patch:in_n_pitch_class(n, pitchclass)
-   self.step = pitchclass[1]
-   self.alteration = pitchclass[2]
+   self.pitch.step = pitchclass[1]
+   self.pitch.alteration = pitchclass[2]
    if n == 1 then 
       self:in_1_bang()
    end
@@ -80,9 +82,9 @@ end
 
 function patch:in_n_random(n, atoms)
    choice = random_choice(CHOICES)
-   self.step = choice[1]
-   self.alteration = choice[2]
-   self.octave = random_range(MIN_OCTAVE, MAX_OCTAVE)
+   self.pitch.step = choice[1]
+   self.pitch.alteration = choice[2]
+   self.pitch.octave = random_range(MIN_OCTAVE, MAX_OCTAVE)
    if n == 1 then 
       self:in_1_bang()
    end
