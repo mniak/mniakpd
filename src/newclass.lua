@@ -6,7 +6,8 @@ return function(ctor)
          ctor(o)
       end
       local meta = {}
-
+      
+      -- Getter
       function meta:__index(index)
          local getfunc = class["get_" .. index]
          if getfunc ~= nil then
@@ -14,6 +15,7 @@ return function(ctor)
          end
          return meta[index]
       end
+      -- Setter
       function meta:__newindex(index, value)
          local setfunc = class["set_" .. index]
          if setfunc ~= nil then
