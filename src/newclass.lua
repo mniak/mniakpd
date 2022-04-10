@@ -2,7 +2,9 @@ return function(ctor)
    class = {}
    function class:new()
       local o = {}
-      ctor(o)
+      if ctor ~= nil then
+         ctor(o)
+      end
       local meta = {}
 
       function meta:__index(index)

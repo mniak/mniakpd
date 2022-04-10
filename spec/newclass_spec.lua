@@ -28,7 +28,7 @@ describe("Test getters and setters", function()
 
    describe("With explicit getter returning static value", function()
       MyClass = newclass()
-      function MyClass:get_c(value)
+      function MyClass:get_c()
          return 'C: fixed value'
       end
 
@@ -50,6 +50,24 @@ describe("Test getters and setters", function()
 
       sut.d = 'new value of D'
       assert.are.equal('new value of D', sut.d)
+   end)
+
+   describe("With explicit getter and setter using underlying field", function()
+      MyClass = newclass()
+      function MyClass:get_e()
+         return self._e
+      end
+      function MyClass:set_e(value)
+         self._e = value
+      end
+    
+      sut = MyClass:new()
+      assert.are.equal(nil, sut.e)
+      assert.are.equal(nil, sut._e)
+
+      sut.e = 'new value of E'
+      assert.are.equal('new value of E', sut.e)
+      assert.are.equal('new value of E', sut._e)
    end)
 
 end)
