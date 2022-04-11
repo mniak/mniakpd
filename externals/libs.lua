@@ -1,3 +1,3 @@
-require "../lua/utils"
-require "../lua/pitch"
+package.path = package.path .. ";src/?.lua"
 
+require "pitch"

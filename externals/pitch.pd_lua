@@ -2,21 +2,6 @@ require "libs"
 
 local patch = pd.Class:new():register("pitch")
 
-local MIN_OCTAVE <const> = 0
-local MAX_OCTAVE <const> = 10
-local MIN_ALTERATION <const> = -2
-local MAX_ALTERATION <const> = 2
-
-local CHOICES = {
-            {0, 0}, {0, 1},
-   {1, -1}, {1, 0}, {1, 1},
-   {2, -1}, {2, 0}, {2, 1},
-   {3, -1}, {3, 0}, {3, 1},
-   {4, -1}, {4, 0}, {4, 1},
-   {5, -1}, {5, 0}, {5, 1},
-   {6, -1}, {6, 0},
-}
-
 function patch:initialize(sel, atoms)
    if #atoms > 0 and atoms[1] == "class" then
       self.inlets = 2
@@ -27,21 +12,11 @@ function patch:initialize(sel, atoms)
    self.outlets = 1
    
    self.pitch = Pitch:new()
-   -- self.step = 0
-   -- self.alteration = 0
-   -- self.octave = 4
-
    self["in_n_pitch-class"] = self.in_n_pitch_class
    return true
 end
 
 function patch:in_1_bang()
-   -- Normalize values
-   pd.post(string.format(">>> PITCH: %g",  self.pitch.step))
-   -- self.pitch.step = math.floor(self.pitch.step % 7)
-   self.pitch.alteration = truncate_range(self.pitch.alteration, MIN_ALTERATION, MAX_ALTERATION)
-   self.pitch.octave = truncate_range(self.pitch.octave, MIN_OCTAVE, MAX_OCTAVE)
-
    if self.mode == "class" then
       self:outlet(1, "pitch-class", {self.pitch.step, self.pitch.alteration})
    else 
@@ -78,7 +53,6 @@ function patch:in_n_pitch_class(n, pitchclass)
       self:in_1_bang()
    end
 end
-
 
 function patch:in_n_random(n, atoms)
    choice = random_choice(CHOICES)
