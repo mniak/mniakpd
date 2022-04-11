@@ -125,3 +125,37 @@ describe("Alteration", function()
    end)
 
 end)
+
+describe("Octave", function()
+
+   describe("When value is in range store the same", function()
+      pitch = Pitch:new()
+      for v = 0, 10 do
+
+         pitch.octave = v
+         assert.are.equal(v, pitch.octave)
+      end
+
+   end)
+
+   describe("When value is smaller than limit, keep min value", function()
+      pitch = Pitch:new()
+
+      for v = -12, 0 do
+         pitch.octave = 0
+         pitch.octave = v
+         assert.are.equal(0, pitch.octave)
+      end
+   end)
+
+   describe("When value is greater than limit, keep max value", function()
+      pitch = Pitch:new()
+
+      for v = 10, 25 do
+         pitch.octave = 0
+         pitch.octave = v
+         assert.are.equal(10, pitch.octave)
+      end
+   end)
+
+end)

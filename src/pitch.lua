@@ -1,7 +1,7 @@
 Pitch = require "newclass"(function(self)
    self._step = 1
    self._alteration = 0
-   self.octave = 4
+   self._octave = 4
 end)
 
 function Pitch:get_step()
@@ -20,4 +20,13 @@ end
 
 function Pitch:set_alteration(value)
    self._alteration = math.max(-2, math.min(2, value))
+end
+
+
+function Pitch:get_octave()
+   return self._octave
+end
+
+function Pitch:set_octave(value)
+   self._octave = math.max(0, math.min(10, value))
 end
