@@ -2,10 +2,12 @@ return function(ctor)
    class = {}
    function class:new()
       local o = {}
-      if ctor ~= nil then
-         ctor(o)
-      end
       local meta = {}
+      setmetatable(o, meta)
+
+      if ctor ~= nil then
+         ctor(meta)
+      end
       
       -- Getter
       function meta:__index(index)
@@ -24,8 +26,6 @@ return function(ctor)
          end
          meta[index] = value
       end
-
-      setmetatable(o, meta)
       return o
    end
    return class

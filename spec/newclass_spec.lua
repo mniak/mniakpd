@@ -85,14 +85,10 @@ describe("Test getters and setters", function()
       assert.are.equal('initial value of F', sut.f)
       assert.are.equal('initial value of F', sut._f)
 
-      assert.are.equal(nil, sut.f)
-      assert.are.equal(nil, sut._f)
-
       sut.f = 'new value of F'
       assert.are.equal('new value of F', sut.f)
       assert.are.equal('new value of F', sut._f)
    end)
-
 
 end)
 
