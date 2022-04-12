@@ -136,15 +136,19 @@ describe("Methods should work", function()
    MyClass = newclass(function (self)
       self.n = 10
    end)
-   function MyClass:increment(a, b)
-      self.n = self.n + 1
+   function MyClass:return_double_and_add(a)
+      result = self.n * 2
+      self.n = self.n + a
+      return result
    end
    
    sut = MyClass:new()
    
-   sut.increment()
-   assert.are.equal(11, sut.n);
+   ret = sut.return_double_and_add(5)
+   assert.are.equal(20, ret);
+   assert.are.equal(15, sut.n);
    
-   sut.increment()
-   assert.are.equal(12, sut.n);
+   ret = sut.return_double_and_add(2)
+   assert.are.equal(30, ret);
+   assert.are.equal(17, sut.n);
 end)

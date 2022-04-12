@@ -15,7 +15,7 @@ return function(ctor)
          if type(classValue) == "function" then
             local oldself = self
             return function(...)
-               classValue(oldself, ...)
+               return classValue(oldself, ...)
             end
          elseif classValue ~= nil then
             return classValue
