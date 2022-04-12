@@ -40,17 +40,6 @@ local NAMES = {"C", "D", "E", "F", "G", "A", "B"}
 local FLAT_SYMBOL = "♭"
 local SHARP_SYMBOL = "♯"
 
-function PitchClass:name_pretty()
-   result = NAMES[self.step]
-   for i = 1, self._alteration do
-      result = result .. SHARP_SYMBOL
-   end
-   for i = -1, self._alteration, -1 do
-      result = result .. FLAT_SYMBOL
-   end
-   return result
-end
-
 function PitchClass:name()
    result = NAMES[self.step]
    for i = 1, self._alteration do
@@ -58,6 +47,17 @@ function PitchClass:name()
    end
    for i = -1, self._alteration, -1 do
       result = result .. "b"
+   end
+   return result
+end
+
+function PitchClass:pretty_name()
+   result = NAMES[self.step]
+   for i = 1, self._alteration do
+      result = result .. SHARP_SYMBOL
+   end
+   for i = -1, self._alteration, -1 do
+      result = result .. FLAT_SYMBOL
    end
    return result
 end
