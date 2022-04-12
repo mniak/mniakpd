@@ -50,3 +50,15 @@ function PitchClass:name_pretty()
    end
    return result
 end
+
+function PitchClass:name()
+   result = NAMES[self.step]
+   for i = 1, self._alteration do
+      result = result .. "#"
+   end
+   for i = -1, self._alteration, -1 do
+      result = result .. "b"
+   end
+   return result
+end
+
