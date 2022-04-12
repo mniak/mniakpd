@@ -8,9 +8,18 @@ return function(ctor)
       if ctor ~= nil then
          ctor(meta)
       end
-      
+
       -- Getter
       function meta:__index(index)
+         local classValue = class[index]
+         if type(classValue) == "function" then
+            local oldself = self
+            return function(...)
+               classValue(oldself, ...)
+            end
+         elseif classValue ~= nil then
+            return classValue
+         end
          local getfunc = class["get_" .. index]
          if getfunc ~= nil then
             return getfunc(self)

@@ -130,3 +130,21 @@ describe("Dont mix data from two instances", function()
    assert.are.equal('V2', m2.v);
    assert.are.equal('V3', m3.v);
 end)
+
+
+describe("Methods should work", function()
+   MyClass = newclass(function (self)
+      self.n = 10
+   end)
+   function MyClass:increment(a, b)
+      self.n = self.n + 1
+   end
+   
+   sut = MyClass:new()
+   
+   sut.increment()
+   assert.are.equal(11, sut.n);
+   
+   sut.increment()
+   assert.are.equal(12, sut.n);
+end)
