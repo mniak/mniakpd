@@ -17,7 +17,7 @@ function Pitch:get_step()
    return self.class.step
 end
 function Pitch:set_step(value)
-  self.class.step = value
+   self.class.step = value
 end
 
 function Pitch:get_alteration()
@@ -27,7 +27,6 @@ end
 function Pitch:set_alteration(value)
    self.class.alteration = value
 end
-
 
 function Pitch:get_octave()
    return self._octave
@@ -42,4 +41,20 @@ function Pitch:random()
    pitch.class = PitchClass:random()
    pitch.octave = random_range(Pitch.MIN_OCTAVE, Pitch.MAX_OCTAVE)
    return pitch
+end
+
+function Pitch:name()
+   pcname = self.class.name() .. self._octave
+   return pcname
+end
+
+local SUPERSCRIPT_OCTAVES = {"⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "¹⁰"}
+function Pitch:pretty_name()
+   pcname = self.class.pretty_name() .. SUPERSCRIPT_OCTAVES[self._octave + 1]
+   return pcname
+end
+
+function Pitch:full_name()
+   pcname = self.class.full_name() .. " " .. self._octave
+   return pcname
 end

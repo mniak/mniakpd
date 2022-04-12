@@ -224,3 +224,224 @@ describe("Random", function()
       end
    end)
 end)
+
+describe("Name", function()
+   describe("Simple", function()
+      describe("Without alterations", function()
+         pitch = Pitch:new()
+         pitch.alteration = 0
+         names = {"C?", "D?", "E?", "F?", "G?", "A?", "B?"}
+         for o = 0, 10 do
+            pitch.octave = o
+            for i = 1, 7 do
+               pitch.step = i
+               expected = names[i]:gsub("?", pitch.octave)
+               actual = pitch.name()
+               assert.are.equal(expected, actual)
+            end
+         end
+      end)
+
+      describe("With 1 flat", function()
+         pitch = Pitch:new()
+         pitch.alteration = -1
+         names = {"Cb?", "Db?", "Eb?", "Fb?", "Gb?", "Ab?", "Bb?"}
+         for o = 0, 10 do
+            pitch.octave = o
+            for i = 1, 7 do
+               pitch.step = i
+               expected = names[i]:gsub("?", pitch.octave)
+               actual = pitch.name()
+               assert.are.equal(expected, actual)
+            end
+         end
+      end)
+
+      describe("With 2 flats", function()
+         pitch = Pitch:new()
+         pitch.alteration = -2
+         names = {"Cbb?", "Dbb?", "Ebb?", "Fbb?", "Gbb?", "Abb?", "Bbb?"}
+         for o = 0, 10 do
+            pitch.octave = o
+            for i = 1, 7 do
+               pitch.step = i
+               expected = names[i]:gsub("?", pitch.octave)
+               actual = pitch.name()
+               assert.are.equal(expected, actual)
+            end
+         end
+      end)
+
+      describe("With 1 sharp", function()
+         pitch = Pitch:new()
+         pitch.alteration = 1
+         names = {"C#?", "D#?", "E#?", "F#?", "G#?", "A#?", "B#?"}
+         for o = 0, 10 do
+            pitch.octave = o
+            for i = 1, 7 do
+               pitch.step = i
+               expected = names[i]:gsub("?", pitch.octave)
+               actual = pitch.name()
+               assert.are.equal(expected, actual)
+            end
+         end
+      end)
+
+      describe("With 2 sharps", function()
+         pitch = Pitch:new()
+         pitch.alteration = 2
+         names = {"C##?", "D##?", "E##?", "F##?", "G##?", "A##?", "B##?"}
+         for o = 0, 10 do
+            pitch.octave = o
+            for i = 1, 7 do
+               pitch.step = i
+               expected = names[i]:gsub("?", pitch.octave)
+               actual = pitch.name()
+               assert.are.equal(expected, actual)
+            end
+         end
+      end)
+   end)
+
+   describe("Pretty", function()
+      superscripts = {"⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "¹⁰"}
+      describe("Without alterations", function()
+         pitch = Pitch:new()
+         pitch.alteration = 0
+         names = {"C?", "D?", "E?", "F?", "G?", "A?", "B?"}
+         for o = 0, 10 do
+            pitch.octave = o
+            for i = 1, 7 do
+               pitch.step = i
+               expected = names[i]:gsub("?", superscripts[pitch.octave+1])
+               actual = pitch.pretty_name()
+               assert.are.equal(expected, actual)
+            end
+         end
+      end)
+
+      describe("With 1 flat", function()
+         pitch = Pitch:new()
+         pitch.alteration = -1
+         names = {"C♭?", "D♭?", "E♭?", "F♭?", "G♭?", "A♭?", "B♭?"}
+         for o = 0, 10 do
+            pitch.octave = o
+            for i = 1, 7 do
+               pitch.step = i
+               expected = names[i]:gsub("?", superscripts[pitch.octave+1])
+               actual = pitch.pretty_name()
+               assert.are.equal(expected, actual)
+            end
+         end
+      end)
+
+      describe("With 2 flats", function()
+         pitch = Pitch:new()
+         pitch.alteration = -2
+         names = {"C♭♭?", "D♭♭?", "E♭♭?", "F♭♭?", "G♭♭?", "A♭♭?", "B♭♭?"}
+         for o = 0, 10 do
+            pitch.octave = o
+            for i = 1, 7 do
+               pitch.step = i
+               expected = names[i]:gsub("?", superscripts[pitch.octave+1])
+               actual = pitch.pretty_name()
+               assert.are.equal(expected, actual)
+            end
+         end
+      end)
+
+      describe("With 1 sharp", function()
+         pitch = Pitch:new()
+         pitch.alteration = 1
+         names = {"C♯?", "D♯?", "E♯?", "F♯?", "G♯?", "A♯?", "B♯?"}
+         for o = 0, 10 do
+            pitch.octave = o
+            for i = 1, 7 do
+               pitch.step = i
+               expected = names[i]:gsub("?", superscripts[pitch.octave+1])
+               actual = pitch.pretty_name()
+               assert.are.equal(expected, actual)
+            end
+         end
+      end)
+
+      describe("With 2 sharps", function()
+         pitch = Pitch:new()
+         pitch.alteration = 2
+         names = {"C♯♯?", "D♯♯?", "E♯♯?", "F♯♯?", "G♯♯?", "A♯♯?", "B♯♯?"}
+         for o = 0, 10 do
+            pitch.octave = o
+            for i = 1, 7 do
+               pitch.step = i
+               expected = names[i]:gsub("?", superscripts[pitch.octave+1])
+               actual = pitch.pretty_name()
+               assert.are.equal(expected, actual)
+            end
+         end
+      end)
+   end)
+
+   describe("Full", function()
+      describe("Without alterations", function()
+         pitch = Pitch:new()
+         pitch.alteration = 0
+         names = {"C ?", "D ?", "E ?", "F ?", "G ?", "A ?", "B ?"}
+         for i = 1, 7 do
+            pitch.step = i
+            expected = names[i]:gsub("?", pitch.octave)
+            actual = pitch.full_name()
+            assert.are.equal(expected, actual)
+         end
+      end)
+
+      describe("With 1 flat", function()
+         pitch = Pitch:new()
+         pitch.alteration = -1
+         names = {"C flat ?", "D flat ?", "E flat ?", "F flat ?", "G flat ?", "A flat ?", "B flat ?"}
+         for i = 1, 7 do
+            pitch.step = i
+            expected = names[i]:gsub("?", pitch.octave)
+            actual = pitch.full_name()
+            assert.are.equal(expected, actual)
+         end
+      end)
+
+      describe("With 2 flats", function()
+         pitch = Pitch:new()
+         pitch.alteration = -2
+         names = {"C double flat ?", "D double flat ?", "E double flat ?", "F double flat ?", "G double flat ?", "A double flat ?",
+                  "B double flat ?"}
+         for i = 1, 7 do
+            pitch.step = i
+            expected = names[i]:gsub("?", pitch.octave)
+            actual = pitch.full_name()
+            assert.are.equal(expected, actual)
+         end
+      end)
+
+      describe("With 1 sharp", function()
+         pitch = Pitch:new()
+         pitch.alteration = 1
+         names = {"C sharp ?", "D sharp ?", "E sharp ?", "F sharp ?", "G sharp ?", "A sharp ?", "B sharp ?"}
+         for i = 1, 7 do
+            pitch.step = i
+            expected = names[i]:gsub("?", pitch.octave)
+            actual = pitch.full_name()
+            assert.are.equal(expected, actual)
+         end
+      end)
+
+      describe("With 2 sharps", function()
+         pitch = Pitch:new()
+         pitch.alteration = 2
+         names = {"C double sharp ?", "D double sharp ?", "E double sharp ?", "F double sharp ?", "G double sharp ?",
+                  "A double sharp ?", "B double sharp ?"}
+         for i = 1, 7 do
+            pitch.step = i
+            expected = names[i]:gsub("?", pitch.octave)
+            actual = pitch.full_name()
+            assert.are.equal(expected, actual)
+         end
+      end)
+   end)
+end)
