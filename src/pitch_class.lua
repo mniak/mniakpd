@@ -13,6 +13,13 @@ PitchClass.MAX_ALTERATION = 2
 function PitchClass:random()
    pitchclass = PitchClass:new()
    pitchclass.step = random_range(PitchClass.MIN_STEP, PitchClass.MAX_STEP)
+   pitchclass.alteration = random_range(-1, 1)
+   return pitchclass
+end
+
+function PitchClass:extended_random()
+   pitchclass = PitchClass:new()
+   pitchclass.step = random_range(PitchClass.MIN_STEP, PitchClass.MAX_STEP)
    pitchclass.alteration = random_range(PitchClass.MIN_ALTERATION, PitchClass.MAX_ALTERATION)
    return pitchclass
 end

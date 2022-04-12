@@ -144,28 +144,55 @@ describe("Alteration", function()
 end)
 
 describe("Random", function()
-   describe("Steps should have a good distribution", function()
-      steps = {}
-      for i = 1, 7 * 5 do
-         pc = PitchClass:random()
-         steps[pc.step] = true
-      end
-      for i = 1, 7 do
-         pc = PitchClass:random()
-         assert.is.truthy(steps[i])
-      end
-   end)
+   describe("Normal", function()
+      describe("Steps should have a good distribution", function()
+         steps = {}
+         for i = 1, 7 * 5 do
+            pc = PitchClass:random()
+            steps[pc.step] = true
+         end
+         for i = 1, 7 do
+            pc = PitchClass:random()
+            assert.is.truthy(steps[i])
+         end
+      end)
 
-   describe("Alterations should have a good distribution", function()
-      alterations = {}
-      for i = 1, 5 * 5 do
-         pc = PitchClass:random()
-         alterations[pc.alteration] = true
-      end
-      for i = -1, -2 do
-         pc = PitchClass:random()
-         assert.is.truthy(alterations[i])
-      end
+      describe("Alterations should never be double", function()
+         alterations = {}
+         for i = 1, 5 * 5 do
+            pc = PitchClass:random()
+            alterations[pc.alteration] = true
+         end
+         for i = -1, 1 do
+            assert.is.truthy(alterations[i])
+         end
+         for _, v in pairs({-2, 2}) do
+            assert.is.falsy(alterations[v])
+         end
+      end)
+   end)
+   describe("Extended", function()
+      describe("Steps should have a good distribution", function()
+         steps = {}
+         for i = 1, 7 * 5 do
+            pc = PitchClass:extended_random()
+            steps[pc.step] = true
+         end
+         for i = 1, 7 do
+            assert.is.truthy(steps[i])
+         end
+      end)
+
+      describe("Alterations should have a good distribution", function()
+         alterations = {}
+         for i = 1, 5 * 5 do
+            pc = PitchClass:extended_random()
+            alterations[pc.alteration] = true
+         end
+         for i = -1, -2 do
+            assert.is.truthy(alterations[i])
+         end
+      end)
    end)
 end)
 
