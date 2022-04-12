@@ -1,40 +1,47 @@
 return function(ctor)
    class = {}
    function class:new()
-      local o = {}
       local meta = {}
-      setmetatable(o, meta)
-
-      if ctor ~= nil then
-         ctor(meta)
-      end
-
       -- Getter
       function meta:__index(index)
-         local classValue = class[index]
+         local classValue =rawget(class,  index)
          if type(classValue) == "function" then
             local oldself = self
             return function(...)
                return classValue(oldself, ...)
             end
-         elseif classValue ~= nil then
-            return classValue
          end
-         local getfunc = class["get_" .. index]
-         if getfunc ~= nil then
-            return getfunc(self)
+         local getter = rawget(class, "get_" .. index)
+         if getter ~= nil then
+            return getter(self)
          end
-         return meta[index]
+         local _value = rawget(self,"_".. index)
+         if _value ~= nil then
+            return _value
+         end
+         return rawget(self, index)
       end
       -- Setter
       function meta:__newindex(index, value)
-         local setfunc = class["set_" .. index]
-         if setfunc ~= nil then
-            setfunc(meta, value)
+         local setter = rawget(class, "set_" .. index)
+         if setter ~= nil then
+            setter(self, value)
             return
          end
-         meta[index] = value
+         local getter = rawget(class, "get_" .. index)
+         if getter ~= nil then
+            rawset(self, "_".. index, value)
+            return
+         end
+         rawset(self, index, value)
       end
+      
+      local o = {}
+      setmetatable(o, meta)
+      if ctor ~= nil then
+         ctor(o)
+      end
+
       return o
    end
    return class

@@ -47,9 +47,11 @@ describe("Test getters and setters", function()
 
       sut = MyClass:new()
       assert.are.equal(nil, sut._d)
+      assert.are.equal(nil, sut.d)
 
       sut.d = 'new value of D'
       assert.are.equal('new value of D', sut._d)
+      assert.are.equal('new value of D', sut.d)
    end)
 
    describe("With explicit getter and setter using underlying field", function()
@@ -130,7 +132,6 @@ describe("Dont mix data from two instances", function()
    assert.are.equal('V2', m2.v);
    assert.are.equal('V3', m3.v);
 end)
-
 
 describe("Methods should work", function()
    MyClass = newclass(function (self)
