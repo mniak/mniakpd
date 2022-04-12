@@ -1,6 +1,5 @@
 require "busted.runner"()
 require "pitch"
-require "utils"
 
 describe("Basic test", function()
    pitch = Pitch:new()
@@ -184,6 +183,44 @@ describe("Octave", function()
          assert.are.equal(0, pitch.octave % 1)
          assert.is.truthy(pitch.octave >= math.floor(v))
          assert.is.truthy(pitch.octave <= math.ceil(v))
+      end
+   end)
+end)
+
+describe("Random", function()
+   describe("Steps should have a good distribution", function()
+      steps = {}
+      for i = 1, 7 * 5 do
+         pitch = Pitch:random()
+         steps[pitch.step] = true
+      end
+      for i = 1, 7 do
+         pitch = Pitch:random()
+         assert.is.truthy(steps[i])
+      end
+   end)
+
+   describe("Alterations should have a good distribution", function()
+      alterations = {}
+      for i = 1, 5 * 5 do
+         pitch = Pitch:random()
+         alterations[pitch.alteration] = true
+      end
+      for i = -1, -2 do
+         pitch = Pitch:random()
+         assert.is.truthy(alterations[i])
+      end
+   end)
+
+   describe("Octaves should have a good distribution", function()
+      octaves = {}
+      for i = 1, 10 * 5 do
+         pitch = Pitch:random()
+         octaves[pitch.octave] = true
+      end
+      for i = 0, 10 do
+         pitch = Pitch:random()
+         assert.is.truthy(octaves[i])
       end
    end)
 end)

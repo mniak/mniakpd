@@ -1,3 +1,4 @@
+require "utils"
 
 Pitch = require "newclass"(function(self)
    self._step = 1
@@ -11,12 +12,6 @@ Pitch.MIN_ALTERATION = -2
 Pitch.MAX_ALTERATION = 2
 Pitch.MIN_OCTAVE = 0
 Pitch.MAX_OCTAVE = 10
-
-function Pitch:random()
-   self.pitch.step = utils.random_range(Pitch.MIN_STEP, Pitch.MAX_STEP)
-   self.pitch.alteration = utils.random_range(Pitch.MIN_ALTERATION, Pitch.MAX_ALTERATION)
-   self.pitch.octave = utils.random_range(Pitch.MIN_OCTAVE, Pitch.MAX_OCTAVE)
-end
 
 function Pitch:get_step()
    return self._step
@@ -43,4 +38,12 @@ end
 
 function Pitch:set_octave(value)
    self._octave = math.floor(math.max(0, math.min(10, value)))
+end
+
+function Pitch:random()
+   pitch = Pitch:new()
+   pitch.step = random_range(Pitch.MIN_STEP, Pitch.MAX_STEP)
+   pitch.alteration = random_range(Pitch.MIN_ALTERATION, Pitch.MAX_ALTERATION)
+   pitch.octave = random_range(Pitch.MIN_OCTAVE, Pitch.MAX_OCTAVE)
+   return pitch
 end

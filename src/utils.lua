@@ -1,7 +1,7 @@
 local rand = require "openssl.rand"
 
 function random_range(min, max)
-   return rand.uniform(max - min) + min
+   return rand.uniform(max - min + 1) + min
 end
 
 function random_choice(items)
