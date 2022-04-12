@@ -188,6 +188,7 @@ describe("Octave", function()
 end)
 
 describe("Random", function()
+describe("Normal", function()
    describe("Steps should have a good distribution", function()
       steps = {}
       for i = 1, 7 * 5 do
@@ -195,20 +196,21 @@ describe("Random", function()
          steps[pitch.step] = true
       end
       for i = 1, 7 do
-         pitch = Pitch:random()
          assert.is.truthy(steps[i])
       end
    end)
 
-   describe("Alterations should have a good distribution", function()
+   describe("Alterations should never be double", function()
       alterations = {}
       for i = 1, 5 * 5 do
          pitch = Pitch:random()
          alterations[pitch.alteration] = true
       end
-      for i = -1, -2 do
-         pitch = Pitch:random()
+      for i = -1, 1 do
          assert.is.truthy(alterations[i])
+      end
+      for _, v in pairs({-2, 2}) do
+         assert.is.falsy(alterations[v])
       end
    end)
 
@@ -219,10 +221,45 @@ describe("Random", function()
          octaves[pitch.octave] = true
       end
       for i = 0, 10 do
-         pitch = Pitch:random()
-         assert.is.truthy(octaves[i])
+          assert.is.truthy(octaves[i])
       end
    end)
+end)
+
+describe("Extended", function()
+   describe("Steps should have a good distribution", function()
+      steps = {}
+      for i = 1, 7 * 5 do
+         pitch = Pitch:extended_random()
+         steps[pitch.step] = true
+      end
+      for i = 1, 7 do
+         assert.is.truthy(steps[i])
+      end
+   end)
+
+   describe("Alterations should have a good distribution", function()
+      alterations = {}
+      for i = 1, 5 * 5 do
+         pitch = Pitch:extended_random()
+         alterations[pitch.alteration] = true
+      end
+      for i = -2, 2 do
+          assert.is.truthy(alterations[i])
+      end
+   end)
+
+   describe("Octaves should have a good distribution", function()
+      octaves = {}
+      for i = 1, 10 * 5 do
+         pitch = Pitch:extended_random()
+         octaves[pitch.octave] = true
+      end
+      for i = 0, 10 do
+        assert.is.truthy(octaves[i])
+      end
+   end)
+end)
 end)
 
 describe("Name", function()

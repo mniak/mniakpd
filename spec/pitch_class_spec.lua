@@ -189,7 +189,7 @@ describe("Random", function()
             pc = PitchClass:extended_random()
             alterations[pc.alteration] = true
          end
-         for i = -1, -2 do
+         for i = -2, 2 do
             assert.is.truthy(alterations[i])
          end
       end)

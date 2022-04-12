@@ -43,6 +43,13 @@ function Pitch:random()
    return pitch
 end
 
+function Pitch:extended_random()
+   pitch = Pitch:new()
+   pitch.class = PitchClass:extended_random()
+   pitch.octave = random_range(Pitch.MIN_OCTAVE, Pitch.MAX_OCTAVE)
+   return pitch
+end
+
 function Pitch:name()
    pcname = self.class.name() .. self._octave
    return pcname
