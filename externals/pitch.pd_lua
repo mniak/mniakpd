@@ -55,10 +55,7 @@ function patch:in_n_pitch_class(n, pitchclass)
 end
 
 function patch:in_n_random(n, atoms)
-   choice = random_choice(CHOICES)
-   self.pitch.step = choice[1]
-   self.pitch.alteration = choice[2]
-   self.pitch.octave = random_range(MIN_OCTAVE, MAX_OCTAVE)
+   self.pitch = Pitch:random()
    if n == 1 then 
       self:in_1_bang()
    end
