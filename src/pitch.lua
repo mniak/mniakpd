@@ -25,7 +25,7 @@ function Pitch:set_step(value)
    if value < Pitch.MIN_STEP then
       return
    end
-   self._step = (value-Pitch.MIN_STEP) % (Pitch.MAX_STEP - Pitch.MIN_STEP + 1) + Pitch.MIN_STEP
+   self._step = math.floor((value-Pitch.MIN_STEP) % (Pitch.MAX_STEP - Pitch.MIN_STEP + 1) + Pitch.MIN_STEP)
 end
 
 function Pitch:get_alteration()
@@ -33,7 +33,7 @@ function Pitch:get_alteration()
 end
 
 function Pitch:set_alteration(value)
-   self._alteration = math.max(Pitch.MIN_ALTERATION, math.min(Pitch.MAX_ALTERATION, value))
+   self._alteration = math.floor(math.max(Pitch.MIN_ALTERATION, math.min(Pitch.MAX_ALTERATION, value)))
 end
 
 
@@ -42,5 +42,5 @@ function Pitch:get_octave()
 end
 
 function Pitch:set_octave(value)
-   self._octave = math.max(0, math.min(10, value))
+   self._octave = math.floor(math.max(0, math.min(10, value)))
 end

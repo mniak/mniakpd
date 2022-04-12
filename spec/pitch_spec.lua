@@ -1,5 +1,6 @@
 require "busted.runner"()
 require "pitch"
+require "utils"
 
 describe("Basic test", function()
    pitch = Pitch:new()
@@ -78,7 +79,16 @@ describe("Step", function()
             assert.are.equal(goodValue, pitch.step)
          end
       end
+   end)
 
+   describe("Decimals should be rounded", function()
+      pitch = Pitch:new()
+      for v = 1, 4, 0.123 do
+         pitch.step = v
+         assert.are.equal(0, pitch.step % 1)
+         assert.is.truthy(pitch.step >= math.floor(v))
+         assert.is.truthy(pitch.step <= math.ceil(v))
+      end
    end)
 end)
 
@@ -124,6 +134,15 @@ describe("Alteration", function()
       end
    end)
 
+   describe("Decimals should be rounded", function()
+      pitch = Pitch:new()
+      for v = -2, 2, 0.123 do
+         pitch.alteration = v
+         assert.are.equal(0, pitch.alteration % 1)
+         assert.is.truthy(pitch.alteration >= math.floor(v))
+         assert.is.truthy(pitch.alteration <= math.ceil(v))
+      end
+   end)
 end)
 
 describe("Octave", function()
@@ -158,4 +177,13 @@ describe("Octave", function()
       end
    end)
 
+   describe("Decimals should be rounded", function()
+      pitch = Pitch:new()
+      for v = 0, 10, 0.123 do
+         pitch.octave = v
+         assert.are.equal(0, pitch.octave % 1)
+         assert.is.truthy(pitch.octave >= math.floor(v))
+         assert.is.truthy(pitch.octave <= math.ceil(v))
+      end
+   end)
 end)
