@@ -1,5 +1,5 @@
 return function(ctor)
-   class = {}
+   local class = {}
    function class:new()
       local meta = {}
       -- Getter

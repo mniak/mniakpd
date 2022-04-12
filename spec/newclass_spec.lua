@@ -117,6 +117,37 @@ describe("Dont mix data from two classes", function()
    assert.are.equal('V3', m3.v);
 end)
 
+
+describe("Dont mix methods from two classes", function()
+   MyClass1 = newclass(function(self)
+      self.inner_value = 0      
+   end)
+   function MyClass1:do_something()
+      self.inner_value = self.inner_value + 2
+      return "result from class 1"
+   end
+   MyClass2 = newclass(function(self)
+      self.value = 1    
+   end)
+   function MyClass2:do_something()
+      self.value = self.value + 3
+      return "result from class 2"
+   end
+
+   m1 = MyClass1:new()
+   m2 = MyClass2:new()
+
+   assert.are.equal(0, m1.inner_value);
+   assert.are.equal(1, m2.value);
+
+   r1 = m1.do_something()
+   assert.are.equal("result from class 1", r1)
+
+   r2 = m2.do_something()
+   assert.are.equal("result from class 2", r2)
+end)
+
+
 describe("Dont mix data from two instances", function()
    MyClass = newclass(function(self)
       self.v = 'D0'
