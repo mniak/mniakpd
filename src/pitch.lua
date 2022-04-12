@@ -1,34 +1,31 @@
 require "utils"
+require "pitch_class"
 
 Pitch = require "newclass"(function(self)
-   self._step = 1
-   self._alteration = 0
+   self.class = PitchClass:new()
    self._octave = 4
 end)
 
-Pitch.MIN_STEP = 1
-Pitch.MAX_STEP = 7
-Pitch.MIN_ALTERATION = -2
-Pitch.MAX_ALTERATION = 2
+Pitch.MIN_STEP = PitchClass.MIN_STEP
+Pitch.MAX_STEP = PitchClass.MAX_STEP
+Pitch.MIN_ALTERATION = PitchClass.MIN_ALTERATION
+Pitch.MAX_ALTERATION = PitchClass.MAX_ALTERATION
 Pitch.MIN_OCTAVE = 0
 Pitch.MAX_OCTAVE = 10
 
 function Pitch:get_step()
-   return self._step
+   return self.class.step
 end
 function Pitch:set_step(value)
-   if value < Pitch.MIN_STEP then
-      return
-   end
-   self._step = math.floor((value-Pitch.MIN_STEP) % (Pitch.MAX_STEP - Pitch.MIN_STEP + 1) + Pitch.MIN_STEP)
+  self.class.step = value
 end
 
 function Pitch:get_alteration()
-   return self._alteration
+   return self.class.alteration
 end
 
 function Pitch:set_alteration(value)
-   self._alteration = math.floor(math.max(Pitch.MIN_ALTERATION, math.min(Pitch.MAX_ALTERATION, value)))
+   self.class.alteration = value
 end
 
 
@@ -42,8 +39,7 @@ end
 
 function Pitch:random()
    pitch = Pitch:new()
-   pitch.step = random_range(Pitch.MIN_STEP, Pitch.MAX_STEP)
-   pitch.alteration = random_range(Pitch.MIN_ALTERATION, Pitch.MAX_ALTERATION)
+   pitch.class = PitchClass:random()
    pitch.octave = random_range(Pitch.MIN_OCTAVE, Pitch.MAX_OCTAVE)
    return pitch
 end
