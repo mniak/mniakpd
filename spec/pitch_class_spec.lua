@@ -169,14 +169,64 @@ describe("Random", function()
    end)
 end)
 
-
 describe("Name", function()
-   pc = PitchClass:new()
-   names = {"C", "D", "E", "F", "G", "A", "B" }
-   for i = 1,7  do
-      pc.step = i
-      expected = names[i]
-      actual = pc.name()
-      assert.are.equal(expected, actual)
-   end
+   describe("Without alterations", function()
+      pc = PitchClass:new()
+      pc.alteration = 0
+      names = {"C", "D", "E", "F", "G", "A", "B"}
+      for i = 1, 7 do
+         pc.step = i
+         expected = names[i]
+         actual = pc.name_pretty()
+         assert.are.equal(expected, actual)
+      end
+   end)
+
+   describe("With 1 flat", function()
+      pc = PitchClass:new()
+      pc.alteration = -1
+      names = {"C♭", "D♭", "E♭", "F♭", "G♭", "A♭", "B♭"}
+      for i = 1, 7 do
+         pc.step = i
+         expected = names[i]
+         actual = pc.name_pretty()
+         assert.are.equal(expected, actual)
+      end
+   end)
+
+   describe("With 2 flats", function()
+      pc = PitchClass:new()
+      pc.alteration = -2
+      names = {"C♭♭", "D♭♭", "E♭♭", "F♭♭", "G♭♭", "A♭♭", "B♭♭"}
+      for i = 1, 7 do
+         pc.step = i
+         expected = names[i]
+         actual = pc.name_pretty()
+         assert.are.equal(expected, actual)
+      end
+   end)
+
+   describe("With 1 sharp", function()
+      pc = PitchClass:new()
+      pc.alteration = 1
+      names = {"C♯", "D♯", "E♯", "F♯", "G♯", "A♯", "B♯"}
+      for i = 1, 7 do
+         pc.step = i
+         expected = names[i]
+         actual = pc.name_pretty()
+         assert.are.equal(expected, actual)
+      end
+   end)
+
+   describe("With 2 sharps", function()
+      pc = PitchClass:new()
+      pc.alteration = 2
+      names = {"C♯♯", "D♯♯", "E♯♯", "F♯♯", "G♯♯", "A♯♯", "B♯♯"}
+      for i = 1, 7 do
+         pc.step = i
+         expected = names[i]
+         actual = pc.name_pretty()
+         assert.are.equal(expected, actual)
+      end
+   end)
 end)
