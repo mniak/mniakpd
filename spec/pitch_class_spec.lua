@@ -292,3 +292,66 @@ describe("Simple Name", function()
       end
    end)
 end)
+
+
+describe("Full Name", function()
+   describe("Without alterations", function()
+      pc = PitchClass:new()
+      pc.alteration = 0
+      names = {"C", "D", "E", "F", "G", "A", "B"}
+      for i = 1, 7 do
+         pc.step = i
+         expected = names[i]
+         actual = pc.full_name()
+         assert.are.equal(expected, actual)
+      end
+   end)
+
+   describe("With 1 flat", function()
+      pc = PitchClass:new()
+      pc.alteration = -1
+      names = {"C flat", "D flat", "E flat", "F flat", "G flat", "A flat", "B flat"}
+      for i = 1, 7 do
+         pc.step = i
+         expected = names[i]
+         actual = pc.full_name()
+         assert.are.equal(expected, actual)
+      end
+   end)
+
+   describe("With 2 flats", function()
+      pc = PitchClass:new()
+      pc.alteration = -2
+      names = {"C double flat", "D double flat", "E double flat", "F double flat", "G double flat", "A double flat", "B double flat"}
+      for i = 1, 7 do
+         pc.step = i
+         expected = names[i]
+         actual = pc.full_name()
+         assert.are.equal(expected, actual)
+      end
+   end)
+
+   describe("With 1 sharp", function()
+      pc = PitchClass:new()
+      pc.alteration = 1
+      names = {"C sharp", "D sharp", "E sharp", "F sharp", "G sharp", "A sharp", "B sharp"}
+      for i = 1, 7 do
+         pc.step = i
+         expected = names[i]
+         actual = pc.full_name()
+         assert.are.equal(expected, actual)
+      end
+   end)
+
+   describe("With 2 sharps", function()
+      pc = PitchClass:new()
+      pc.alteration = 2
+      names = {"C double sharp", "D double sharp", "E double sharp", "F double sharp", "G double sharp", "A double sharp", "B double sharp"}
+      for i = 1, 7 do
+         pc.step = i
+         expected = names[i]
+         actual = pc.full_name()
+         assert.are.equal(expected, actual)
+      end
+   end)
+end)

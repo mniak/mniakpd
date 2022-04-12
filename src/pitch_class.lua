@@ -62,3 +62,16 @@ function PitchClass:name()
    return result
 end
 
+function PitchClass:full_name()
+   if self._alteration == -2 then
+      return NAMES[self.step] .. " double flat"
+   elseif self._alteration == -1 then
+      return NAMES[self.step] .. " flat"
+   elseif self._alteration == 1 then
+      return NAMES[self.step] .. " sharp"
+   elseif self._alteration == 2 then
+      return NAMES[self.step] .. " double sharp"
+   else
+      return NAMES[self.step]
+   end
+end
