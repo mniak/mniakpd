@@ -32,7 +32,7 @@ describe("Transposing", function()
       interval.direction = Interval.DIRECTION_ASCENDING
 
       for a = -2, 2 do
-         for o = 0, 10 do
+         for o = 0, 9 do
             for s = 1, 7 do
                pitch = Pitch:new()
                pitch.step = s
