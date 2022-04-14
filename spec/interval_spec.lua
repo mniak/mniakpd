@@ -113,4 +113,49 @@ describe("Inversion", function()
          end
       end
    end)
+
+   describe("Unison should become octave and vice-versa", function ()
+      A = 1
+      B = 8
+
+      a = Interval:new()
+      a.size = A
+      assert.are.equal(B, a.invert().size)
+      b = Interval:new()
+      b.size = B
+      assert.are.equal(A, b.invert().size)
+   end)
+   describe("Second should become seventh and vice-versa", function ()
+      A = 2
+      B = 7
+
+      a = Interval:new()
+      a.size = A
+      assert.are.equal(B, a.invert().size)
+      b = Interval:new()
+      b.size = B
+      assert.are.equal(A, b.invert().size)
+   end)
+   describe("Third should become Sixth and vice-versa", function ()
+      A = 3
+      B = 6
+
+      a = Interval:new()
+      a.size = A
+      assert.are.equal(B, a.invert().size)
+      b = Interval:new()
+      b.size = B
+      assert.are.equal(A, b.invert().size)
+   end)
+   describe("Fourth should become fifth and vice-versa", function ()
+      A = 4
+      B = 5
+
+      a = Interval:new()
+      a.size = A
+      assert.are.equal(B, a.invert().size)
+      b = Interval:new()
+      b.size = B
+      assert.are.equal(A, b.invert().size)
+   end)
 end)
