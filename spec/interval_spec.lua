@@ -4,13 +4,13 @@ require "interval"
 describe("Constructor", function()
    int = Interval:new()
 
-   assert.are.equal(Interval.UNISON, int.size)
+   assert.are.equal(Interval.SIZE_UNISON, int.size)
    assert.are.equal(1, int.size)
 
-   assert.are.equal(Interval.PERFECT, int.quality)
+   assert.are.equal(Interval.QUALITY_PERFECT, int.quality)
    assert.are.equal(0, int.quality)
 
-   assert.are.equal(Interval.ASCENDING, int.direction)
+   assert.are.equal(Interval.DIRECTION_ASCENDING, int.direction)
    assert.are.equal(1, int.direction)
 end)
 
@@ -32,7 +32,7 @@ describe("Normalization", function()
       int.size = 1
       newInt = int.normalize()
       assert.are.equal(1, newInt.size)
-      assert.are.equal(Interval.UNISON, newInt.size)
+      assert.are.equal(Interval.SIZE_UNISON, newInt.size)
    end)
    describe("Should always be in the first octave", function()
       for s = 2, 127, 7 do
@@ -40,49 +40,49 @@ describe("Normalization", function()
          int.size = s
          newInt = int.normalize()
          assert.are.equal(2, newInt.size)
-         assert.are.equal(Interval.SECOND, newInt.size)
+         assert.are.equal(Interval.SIZE_SECOND, newInt.size)
       end
       for s = 3, 127, 7 do
          int = Interval:new()
          int.size = s
          newInt = int.normalize()
          assert.are.equal(3, newInt.size)
-         assert.are.equal(Interval.THIRD, newInt.size)
+         assert.are.equal(Interval.SIZE_THIRD, newInt.size)
       end
       for s = 4, 127, 7 do
          int = Interval:new()
          int.size = s
          newInt = int.normalize()
          assert.are.equal(4, newInt.size)
-         assert.are.equal(Interval.FOURTH, newInt.size)
+         assert.are.equal(Interval.SIZE_FOURTH, newInt.size)
       end
       for s = 5, 127, 7 do
          int = Interval:new()
          int.size = s
          newInt = int.normalize()
          assert.are.equal(5, newInt.size)
-         assert.are.equal(Interval.FIFTH, newInt.size)
+         assert.are.equal(Interval.SIZE_FIFTH, newInt.size)
       end
       for s = 6, 127, 7 do
          int = Interval:new()
          int.size = s
          newInt = int.normalize()
          assert.are.equal(6, newInt.size)
-         assert.are.equal(Interval.SIXTH, newInt.size)
+         assert.are.equal(Interval.SIZE_SIXTH, newInt.size)
       end
       for s = 7, 127, 7 do
          int = Interval:new()
          int.size = s
          newInt = int.normalize()
          assert.are.equal(7, newInt.size)
-         assert.are.equal(Interval.SEVENTH, newInt.size)
+         assert.are.equal(Interval.SIZE_SEVENTH, newInt.size)
       end
       for s = 8, 127, 7 do
          int = Interval:new()
          int.size = s
          newInt = int.normalize()
          assert.are.equal(8, newInt.size)
-         assert.are.equal(Interval.OCTAVE, newInt.size)
+         assert.are.equal(Interval.SIZE_OCTAVE, newInt.size)
       end
    end)
 end)

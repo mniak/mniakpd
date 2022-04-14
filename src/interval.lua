@@ -6,23 +6,23 @@ Interval = require "newclass"(function(self)
    self.direction = 1
 end)
 
-Interval.UNISON = 1
-Interval.SECOND = 2
-Interval.THIRD = 3
-Interval.FOURTH = 4
-Interval.FIFTH = 5
-Interval.SIXTH = 6
-Interval.SEVENTH = 7
-Interval.OCTAVE = 8
+Interval.SIZE_UNISON = 1
+Interval.SIZE_SECOND = 2
+Interval.SIZE_THIRD = 3
+Interval.SIZE_FOURTH = 4
+Interval.SIZE_FIFTH = 5
+Interval.SIZE_SIXTH = 6
+Interval.SIZE_SEVENTH = 7
+Interval.SIZE_OCTAVE = 8
 
-Interval.AUGMENTED = 0
-Interval.MAJOR = 1
-Interval.PERFECT = 0
-Interval.MINOR = -1
-Interval.DIMINISHED = 0
+Interval.QUALITY_AUGMENTED = 0
+Interval.QUALITY_MAJOR = 1
+Interval.QUALITY_PERFECT = 0
+Interval.QUALITY_MINOR = -1
+Interval.QUALITY_DIMINISHED = 0
 
-Interval.ASCENDING = 1
-Interval.DESCENDING = -1
+Interval.DIRECTION_ASCENDING = 1
+Interval.DIRECTION_DESCENDING = -1
 
 function Interval:normalize()
    int = Interval:new()
