@@ -5,7 +5,7 @@ local patch = pd.Class:new():register("name")
 function patch:initialize(sel, atoms)
    self.inlets = 1
    self.outlets = 1
-   -- self["in_1_pitch-class"] = self.in_1_pitch_class
+   self["in_1_pitch-class"] = self.in_1_pitch_class
    return true
 end
 
