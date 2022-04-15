@@ -42,6 +42,23 @@ function Interval:invert()
    return int
 end
 
+function Interval:name()
+   if self.quality == Interval.QUALITY_DIMINISHED  then
+      return "d" .. self.size
+   elseif self.quality == Interval.QUALITY_MINOR  then
+      return "m" .. self.size
+   elseif self.quality == Interval.QUALITY_PERFECT  then
+      return "P" .. self.size
+   elseif self.quality == Interval.QUALITY_MAJOR  then
+      return "M" .. self.size
+   elseif self.quality == Interval.QUALITY_MAJOR  then
+      return "A" .. self.size
+   else
+      return nil
+   end
+end
+
+
 function Interval:parse(text)
    head, tail = utf8_sub(text, 1, 1), utf8_sub(text, 2)
    s = math.tointeger(tail)

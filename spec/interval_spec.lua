@@ -166,7 +166,7 @@ describe("Parse", function()
          text = "P" .. s
          int = Interval:parse(text)
 
-         -- assert.are.equal(text, int.name())
+         assert.are.equal(text, int.name())
          assert.are.equal(s, int.size)
          assert.are.equal(Interval.QUALITY_PERFECT, int.quality)
          assert.are.equal(Interval.DIRECTION_ASCENDING, int.direction)
