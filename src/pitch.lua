@@ -68,14 +68,45 @@ end
 
 function Pitch:transpose(interval)
    newPitch = Pitch:new()
-   newPitch.step = self.step + interval.size -1
+   newPitch.step = self.step + interval.size - 1
    if interval.quality == Interval.QUALITY_AUGMENTED then
       newPitch.class._alteration = self.alteration + 1
-   elseif  interval.quality == Interval.QUALITY_DIMINISHED then
-      newPitch.class._alteration = self.alteration -1
-   else 
+   elseif interval.quality == Interval.QUALITY_DIMINISHED then
+      newPitch.class._alteration = self.alteration - 1
+   else
       newPitch.alteration = self.alteration
    end
-   newPitch.octave = self.octave + math.floor((self.step -1 + interval.size -1) / 7)
+   newPitch.octave = self.octave + math.floor((self.step - 1 + interval.size - 1) / 7)
    return newPitch
+end
+
+local NAMES = {"C", "D", "E", "F", "G", "A", "B"}
+local FLAT_SYMBOL = "♭"
+local SHARP_SYMBOL = "♯"
+
+function Pitch:parse(value)
+   newPitch = Pitch:new()
+   head, tail = utf8_sub(value, 1, 1), utf8_sub(value, 2)
+   for iname, name in pairs(NAMES) do
+      if name == head then
+         newPitch.step = iname
+         break
+      end
+   end
+   while true do
+      i = math.tointeger(tail)
+      if i ~= nil then
+         newPitch.octave = i
+         return newPitch
+      end
+
+      head, tail = utf8_sub(tail, 1, 1), utf8_sub(tail, 2)
+      if head == "b" or head == FLAT_SYMBOL then
+         newPitch.alteration = newPitch.alteration - 1
+      elseif head == "#" or head == SHARP_SYMBOL then
+         newPitch.alteration = newPitch.alteration + 1
+      else
+         return newPitch
+      end
+   end
 end
