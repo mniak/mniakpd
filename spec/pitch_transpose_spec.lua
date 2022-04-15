@@ -50,15 +50,15 @@ describe("Transposing", function()
    end)
 
    describe("4aug+5dim should also behave as an octave", function()
-      aug_fourth = Interval:new()
-      aug_fourth.size = Interval.SIZE_FOURTH
-      aug_fourth.quality = Interval.QUALITY_AUGMENTED
-      aug_fourth.direction = Interval.DIRECTION_ASCENDING
+      tone = Interval:new()
+      tone.size = Interval.SIZE_FOURTH
+      tone.quality = Interval.QUALITY_AUGMENTED
+      tone.direction = Interval.DIRECTION_ASCENDING
 
-      dim_fifth = Interval:new()
-      dim_fifth.size = Interval.SIZE_FIFTH
-      dim_fifth.quality = Interval.QUALITY_DIMINISHED
-      dim_fifth.direction = Interval.DIRECTION_ASCENDING
+      semitone = Interval:new()
+      semitone.size = Interval.SIZE_FIFTH
+      semitone.quality = Interval.QUALITY_DIMINISHED
+      semitone.direction = Interval.DIRECTION_ASCENDING
 
       for a = -2, 2 do
          for o = 0, 9 do
@@ -68,7 +68,7 @@ describe("Transposing", function()
                pitch.alteration = a
                pitch.octave = o
 
-               transposed = pitch.transpose(aug_fourth).transpose(dim_fifth)
+               transposed = pitch.transpose(tone).transpose(semitone)
                assert.are.equal(s, transposed.step)
                assert.are.equal(a, transposed.alteration)
                assert.are.equal(o + 1, transposed.octave)
@@ -78,15 +78,15 @@ describe("Transposing", function()
    end)
 
    describe("5dim+4aug should also behave as an octave", function()
-      aug_fourth = Interval:new()
-      aug_fourth.size = Interval.SIZE_FOURTH
-      aug_fourth.quality = Interval.QUALITY_AUGMENTED
-      aug_fourth.direction = Interval.DIRECTION_ASCENDING
+      tone = Interval:new()
+      tone.size = Interval.SIZE_FOURTH
+      tone.quality = Interval.QUALITY_AUGMENTED
+      tone.direction = Interval.DIRECTION_ASCENDING
 
-      dim_fifth = Interval:new()
-      dim_fifth.size = Interval.SIZE_FIFTH
-      dim_fifth.quality = Interval.QUALITY_DIMINISHED
-      dim_fifth.direction = Interval.DIRECTION_ASCENDING
+      semitone = Interval:new()
+      semitone.size = Interval.SIZE_FIFTH
+      semitone.quality = Interval.QUALITY_DIMINISHED
+      semitone.direction = Interval.DIRECTION_ASCENDING
 
       for a = -2, 2 do
          for o = 0, 9 do
@@ -96,7 +96,43 @@ describe("Transposing", function()
                pitch.alteration = a
                pitch.octave = o
 
-               transposed = pitch.transpose(dim_fifth).transpose(aug_fourth)
+               transposed = pitch.transpose(semitone).transpose(tone)
+               assert.are.equal(s, transposed.step)
+               assert.are.equal(a, transposed.alteration)
+               assert.are.equal(o + 1, transposed.octave)
+            end
+         end
+      end
+   end)
+   
+   describe("TTsTTTs should also behave as an octave", function()
+      tone = Interval:new()
+      tone.size = Interval.SIZE_SECOND
+      tone.quality = Interval.QUALITY_MAJOR
+      tone.direction = Interval.DIRECTION_ASCENDING
+
+      semitone = Interval:new()
+      semitone.size = Interval.SIZE_SECOND
+      semitone.quality = Interval.QUALITY_MINOR
+      semitone.direction = Interval.DIRECTION_ASCENDING
+
+      for a = -2, 2 do
+         for o = 0, 9 do
+            for s = 1, 7 do
+               pitch = Pitch:new()
+               pitch.step = s
+               pitch.alteration = a
+               pitch.octave = o
+
+               transposed = pitch
+                  .transpose(tone)
+                  .transpose(tone)
+                  .transpose(semitone)
+                  .transpose(tone)
+                  .transpose(tone)
+                  .transpose(tone)
+                  .transpose(semitone)
+               
                assert.are.equal(s, transposed.step)
                assert.are.equal(a, transposed.alteration)
                assert.are.equal(o + 1, transposed.octave)
