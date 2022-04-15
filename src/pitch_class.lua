@@ -1,7 +1,7 @@
 require "utils"
 
 PitchClass = require "newclass"(function(self)
-   self._step = 1
+   self.raw_step = 0
    self._alteration = 0
 end)
 
@@ -25,14 +25,14 @@ function PitchClass:extended_random()
 end
 
 function PitchClass:get_step()
-   return self._step
+   return self.raw_step + 1
 end
 function PitchClass:set_step(value)
    if value < PitchClass.MIN_STEP then
       return
    end
-   self._step = math.floor((value - PitchClass.MIN_STEP) % (PitchClass.MAX_STEP - PitchClass.MIN_STEP + 1) +
-                              PitchClass.MIN_STEP)
+   self.raw_step = math.floor((value - PitchClass.MIN_STEP) % (PitchClass.MAX_STEP - PitchClass.MIN_STEP + 1) +
+                              PitchClass.MIN_STEP) -1
 end
 
 function PitchClass:get_alteration()
