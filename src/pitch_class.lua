@@ -47,6 +47,18 @@ local NAMES = {"C", "D", "E", "F", "G", "A", "B"}
 local FLAT_SYMBOL = "♭"
 local SHARP_SYMBOL = "♯"
 
+
+function PitchClass:parse(value)
+   newpc = PitchClass:new()
+   firstChar = value:sub(1, 1)
+   for iname, name in pairs(NAMES) do
+      if name == firstChar then
+         newpc.step = iname
+      end
+   end
+   return newpc
+end
+
 function PitchClass:name()
    result = NAMES[self.step]
    for i = 1, self._alteration do

@@ -385,3 +385,16 @@ describe("Name", function()
       end)
    end)
 end)
+
+describe("Parsing", function()
+   for ialt, alt in pairs({"bb", "b", "", "#", "##"}) do
+      for istep, step in pairs({"C", "D", "E", "F", "G", "A", "B"}) do
+         print(istep, step)
+         alt = ""
+         text = step .. alt
+         
+         parsed = PitchClass:parse(text)
+         assert.are.equal(istep, parsed.step)
+      end
+   end
+end)
