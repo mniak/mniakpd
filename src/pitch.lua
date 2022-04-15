@@ -70,9 +70,9 @@ function Pitch:transpose(interval)
    newPitch = Pitch:new()
    newPitch.step = self.step + interval.size -1
    if interval.quality == Interval.QUALITY_AUGMENTED then
-      newPitch.alteration = self.alteration + 1
+      newPitch.class._alteration = self.alteration + 1
    elseif  interval.quality == Interval.QUALITY_DIMINISHED then
-      newPitch.alteration = self.alteration -1
+      newPitch.class._alteration = self.alteration -1
    else 
       newPitch.alteration = self.alteration
    end
