@@ -1,18 +1,10 @@
 require "utils"
 
 Interval = require "newclass"(function(self)
-   self.raw_size = 0
+   self.size = 1
    self.quality = 0
    self.direction = 1
 end)
-
-function Interval:get_size()
-   return self.raw_size + 1
-end
-
-function Interval:set_size(value)
-   self.raw_size = value - 1
-end
 
 Interval.SIZE_UNISON = 1
 Interval.SIZE_SECOND = 2
@@ -34,10 +26,10 @@ Interval.DIRECTION_DESCENDING = -1
 
 function Interval:normalize()
    int = Interval:new()
-   if self.raw_size == 0 then
-      int.raw_size = 0
+   if self.size == 1 then
+      int.size = 1
    else
-      int.raw_size = (self.raw_size - 1) % 7 + 1
+      int.size = (self.size - 2) % 7 + 2
    end
    return int
 end
@@ -45,7 +37,7 @@ end
 function Interval:invert()
    norm = self.normalize()
    int = Interval:new()
-   int.raw_size = 7 - norm.raw_size
+   int.size = 8 - norm.size + 1
    int.direction = -self.direction
    return int
 end

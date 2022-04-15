@@ -76,7 +76,6 @@ function Pitch:transpose(interval)
    else 
       newPitch.alteration = self.alteration
    end
-   newPitch.alteration = self.alteration
-   newPitch.octave = self.octave + math.floor((self.step -1 + interval.size-1) / 7)
+   newPitch.octave = self.octave + math.floor((self.step -1 + interval.size) / 7)
    return newPitch
 end
