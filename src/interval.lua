@@ -41,3 +41,30 @@ function Interval:invert()
    int.direction = -self.direction
    return int
 end
+
+function Interval:parse(text)
+   head, tail = utf8_sub(text, 1, 1), utf8_sub(text, 2)
+   s = math.tointeger(tail)
+
+   if s == nil then
+      return nil
+   end
+
+   int = Interval:new()
+   int.size = s
+
+   if head == "d" then
+      int.quality = Interval.QUALITY_DIMINISHED
+   elseif head == "m" then
+      int.quality = Interval.QUALITY_MINOR
+   elseif head == "P" then
+      int.quality = Interval.QUALITY_PERFECT
+   elseif head == "M" then
+      int.quality = Interval.QUALITY_MAJOR
+   elseif head == "A" then
+      int.quality = Interval.QUALITY_MAJOR
+   else
+      return nil
+   end
+   return int
+end

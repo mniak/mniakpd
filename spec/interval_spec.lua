@@ -159,3 +159,17 @@ describe("Inversion", function()
       assert.are.equal(A, b.invert().size)
    end)
 end)
+
+describe("Parse", function()
+   describe("Perfect intervals", function()
+      for _, s in pairs({1, 4, 5, 8, 11, 12, 15}) do
+         text = "P" .. s
+         int = Interval:parse(text)
+
+         -- assert.are.equal(text, int.name())
+         assert.are.equal(s, int.size)
+         assert.are.equal(Interval.QUALITY_PERFECT, int.quality)
+         assert.are.equal(Interval.DIRECTION_ASCENDING, int.direction)
+      end
+   end)
+end)
