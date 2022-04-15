@@ -47,16 +47,39 @@ local NAMES = {"C", "D", "E", "F", "G", "A", "B"}
 local FLAT_SYMBOL = "♭"
 local SHARP_SYMBOL = "♯"
 
+local function utf8_sub(s, i, j)
+   if s == nil then
+      return nil
+   elseif s == "" then
+      return ""
+   end
+   
+   i = utf8.offset(s, i)
+   if j ~= nil then
+      j = utf8.offset(s, j + 1) - 1
+   end
+   return string.sub(s, i, j)
+end
 
 function PitchClass:parse(value)
    newpc = PitchClass:new()
-   firstChar = value:sub(1, 1)
+   head, tail = utf8_sub(value, 1, 1), utf8_sub(value, 2)
    for iname, name in pairs(NAMES) do
-      if name == firstChar then
+      if name == head then
          newpc.step = iname
+         break
       end
    end
-   return newpc
+   while true do
+      head, tail = utf8_sub(tail, 1, 1), utf8_sub(tail, 2)
+      if head == "b" or head == FLAT_SYMBOL then
+         newpc.alteration = newpc.alteration - 1
+      elseif head == "#" or head == SHARP_SYMBOL then
+         newpc.alteration = newpc.alteration + 1
+      else
+         return newpc
+      end
+   end
 end
 
 function PitchClass:name()

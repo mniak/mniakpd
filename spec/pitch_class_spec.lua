@@ -386,15 +386,28 @@ describe("Name", function()
    end)
 end)
 
-describe("Parsing", function()
-   for ialt, alt in pairs({"bb", "b", "", "#", "##"}) do
-      for istep, step in pairs({"C", "D", "E", "F", "G", "A", "B"}) do
-         print(istep, step)
-         alt = ""
-         text = step .. alt
-         
-         parsed = PitchClass:parse(text)
-         assert.are.equal(istep, parsed.step)
+describe("Parse", function()
+   describe("Simple name", function()
+      for ialt, alt in pairs({"bb", "b", "", "#", "##"}) do
+         for istep, step in pairs({"C", "D", "E", "F", "G", "A", "B"}) do
+            text = step .. alt
+            parsed = PitchClass:parse(text)
+
+            assert.are.equal(istep, parsed.step)
+            assert.are.equal(ialt - 3, parsed.alteration)
+         end
       end
-   end
+   end)
+
+   describe("Pretty name", function()
+      for ialt, alt in pairs({"♭♭", "♭", "", "♯", "♯♯"}) do
+         for istep, step in pairs({"C", "D", "E", "F", "G", "A", "B"}) do
+            text = step .. alt
+            parsed = PitchClass:parse(text)
+
+            assert.are.equal(istep, parsed.step)
+            assert.are.equal(ialt - 3, parsed.alteration)
+         end
+      end
+   end)
 end)
