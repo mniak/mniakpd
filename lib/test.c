@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int main () {
-    GoString word = generateWord();
+    char* word = generateWord();
     printf("%s", word);
    return 0;
 }
