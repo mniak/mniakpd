@@ -1,5 +1,6 @@
 #include "m_pd.h"  
- 
+extern char* generateWord();
+
 static t_class *mniak_class;  
  
 typedef struct _mniak {  
@@ -9,7 +10,7 @@ typedef struct _mniak {
 void mniak_bang(t_mniak *x)  
 {
   (void)x; // silence unused variable warning
-  post("Hello world!");
+  post(generateWord());
 }  
  
 void *mniak_new(void)  
