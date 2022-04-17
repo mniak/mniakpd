@@ -26,5 +26,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-lib/*.o
-externals/*.pd_linux
+**/*.o
+**/*.pd_linux
+**/*.exe
