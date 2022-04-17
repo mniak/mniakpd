@@ -71,7 +71,7 @@ function Pitch:transpose(interval)
    newPitch.step = self.step + interval.size - 1
    if interval.quality == Interval.QUALITY_AUGMENTED then
       newPitch.class._alteration = self.alteration + 1
-   elseif interval.quality == Interval.QUALITY_DIMINISHED then
+   elseif interval.quality == Interval.QUALITY_DIMINISHED or interval.quality == Interval.QUALITY_MINOR then
       newPitch.class._alteration = self.alteration - 1
    else
       newPitch.alteration = self.alteration
@@ -83,6 +83,8 @@ end
 local NAMES = {"C", "D", "E", "F", "G", "A", "B"}
 local FLAT_SYMBOL = "♭"
 local SHARP_SYMBOL = "♯"
+local DOUBLE_FLAT_SYMBOL = "𝄫"
+local DOUBLE_SHARP_SYMBOL = "𝄪"
 
 function Pitch:parse(value)
    newPitch = Pitch:new()
