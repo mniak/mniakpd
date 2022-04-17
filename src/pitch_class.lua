@@ -46,6 +46,8 @@ end
 local NAMES = {"C", "D", "E", "F", "G", "A", "B"}
 local FLAT_SYMBOL = "♭"
 local SHARP_SYMBOL = "♯"
+local DOUBLE_FLAT_SYMBOL = "𝄫"
+local DOUBLE_SHARP_SYMBOL = "𝄪"
 
 function PitchClass:parse(value)
    newpc = PitchClass:new()
@@ -62,6 +64,10 @@ function PitchClass:parse(value)
          newpc.alteration = newpc.alteration - 1
       elseif head == "#" or head == SHARP_SYMBOL then
          newpc.alteration = newpc.alteration + 1
+      elseif head == DOUBLE_FLAT_SYMBOL then
+         newpc.alteration = newpc.alteration - 2
+      elseif head == DOUBLE_SHARP_SYMBOL then
+         newpc.alteration = newpc.alteration + 2
       else
          return newpc
       end
@@ -81,11 +87,14 @@ end
 
 function PitchClass:pretty_name()
    result = NAMES[self.step]
-   for i = 1, self._alteration do
-      result = result .. SHARP_SYMBOL
-   end
-   for i = -1, self._alteration, -1 do
+   if self._alteration == -2 then
+      result = result .. DOUBLE_FLAT_SYMBOL
+   elseif self._alteration == -1 then
       result = result .. FLAT_SYMBOL
+   elseif self._alteration == 1 then
+      result = result .. SHARP_SYMBOL
+   elseif self._alteration == 2 then
+      result = result .. DOUBLE_SHARP_SYMBOL
    end
    return result
 end

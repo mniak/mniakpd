@@ -287,7 +287,7 @@ describe("Name", function()
       describe("With 2 flats", function()
          pc = PitchClass:new()
          pc.alteration = -2
-         names = {"C♭♭", "D♭♭", "E♭♭", "F♭♭", "G♭♭", "A♭♭", "B♭♭"}
+         names = {"C𝄫", "D𝄫", "E𝄫", "F𝄫", "G𝄫", "A𝄫", "B𝄫"}
          for i = 1, 7 do
             pc.step = i
             expected = names[i]
@@ -311,7 +311,7 @@ describe("Name", function()
       describe("With 2 sharps", function()
          pc = PitchClass:new()
          pc.alteration = 2
-         names = {"C♯♯", "D♯♯", "E♯♯", "F♯♯", "G♯♯", "A♯♯", "B♯♯"}
+         names = {"C𝄪", "D𝄪", "E𝄪", "F𝄪", "G𝄪", "A𝄪", "B𝄪"}
          for i = 1, 7 do
             pc.step = i
             expected = names[i]
@@ -400,7 +400,7 @@ describe("Parse", function()
    end)
 
    describe("Pretty name", function()
-      for ialt, alt in pairs({"♭♭", "♭", "", "♯", "♯♯"}) do
+      for ialt, alt in pairs({"𝄫", "♭", "", "♯", "𝄪"}) do
          for istep, step in pairs({"C", "D", "E", "F", "G", "A", "B"}) do
             text = step .. alt
             parsed = PitchClass:parse(text)
