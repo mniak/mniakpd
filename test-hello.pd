@@ -1,0 +1,5 @@
+#N canvas 831 339 450 325 12;
+#X obj 59 154 mniak;
+#X obj 59 122 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X connect 1 0 0 0;
