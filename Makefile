@@ -15,8 +15,8 @@ externals/mniak.pd_linux: mniak.pd_linux
 
 
 lib/mniak_go.h: lib/mniak_go.o
-lib/mniak_go.o: lib/mniak.go
-	CGO_ENABLED=1 go build -o lib/mniak_go.o -buildmode=c-shared lib/mniak.go
+lib/mniak_go.o: lib/mniak.cgo
+	CGO_ENABLED=1 go build -o lib/mniak_go.o -buildmode=c-shared lib/mniak.cgo
 
 test-on-pd: lib/mniak.pd_linux test-hello.pd
 	pd test-hello.pd
