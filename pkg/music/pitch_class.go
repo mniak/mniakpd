@@ -1,4 +1,4 @@
-package muslib
+package music
 
 type PitchClass struct {
 	step       Step

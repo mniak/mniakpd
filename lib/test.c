@@ -4,5 +4,5 @@
 int main () {
     char* word = generateWord();
     printf("%s", word);
-   return 0;
+    return 0;
 }
