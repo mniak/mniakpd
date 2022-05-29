@@ -13,12 +13,19 @@ CC=gcc
 PDLIBDIR=${CURDIR}/externals
 PDINCLUDEDIR=${CURDIR}/pure-data/src
 
-PLUGINEXT=pd_linux
 ifeq (${OS}, Windows_NT)
-	PLUGINEXT=dll
+	PLUGINEXT=dll]
+else
+	PLUGINEXT=pd_linux
 endif
 
-all: ${PDLIBDIR}/mniak.${PLUGINEXT}
+ifeq (${OS}, Windows_NT)
+	MOVECMD=move
+else
+	MOVECMD=mv
+endif
+
+post: ${PDLIBDIR}/mniak.${PLUGINEXT}
 
 include pd-lib-builder/Makefile.pdlibbuilder
 
@@ -31,13 +38,8 @@ lib/muslib.o: lib/muslib.go
 
 ### PD Plugin
 mniak.${PLUGINEXT}: lib/muslib.o post
-ifeq (${OS}, Windows_NT)
-	${PDLIBDIR}/mniak.${PLUGINEXT}: mniak.${PLUGINEXT}
-		move mniak.${PLUGINEXT} ${PDLIBDIR}/mniak.${PLUGINEXT}
-else
-	${PDLIBDIR}/mniak.${PLUGINEXT}: mniak.${PLUGINEXT}
-		mv mniak.${PLUGINEXT} ${PDLIBDIR}/mniak.${PLUGINEXT}
-endif
+${PDLIBDIR}/mniak.${PLUGINEXT}: mniak.${PLUGINEXT}
+	${MOVECMD} mniak.${PLUGINEXT} ${PDLIBDIR}/mniak.${PLUGINEXT}
 
 
 ### Tests
