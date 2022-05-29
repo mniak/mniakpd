@@ -29,3 +29,6 @@ Temporary Items
 **/*.o
 **/*.pd_linux
 **/*.exe
+
+.vscode/*
+!.vscode/*.json
