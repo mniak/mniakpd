@@ -28,6 +28,7 @@ Temporary Items
 
 **/*.o
 **/*.pd_linux
+**/*.dll
 **/*.exe
 
 .vscode/*
